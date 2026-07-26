@@ -6,6 +6,12 @@
 
 ## v01_00_000 — Unreleased
 
+### Lumber & framing calculator
+- Board feet: (thickness_nom × width_nom × length) ÷ 12 — always computed in nominal inches/feet regardless of unit toggle
+- Stud count: floor(wall length ÷ spacing) + 1 for 300 mm (12"), 400 mm (16"), 600 mm (24") o/c
+- Waste factor applied to both calculations
+- Bumped service worker cache to `cancalc-v01_00_002`
+
 ### Concrete calculator (in progress)
 - Implemented `js/calculators/concrete.js` — slab, footing/rectangular pier, and round pier volume
 - Bag count for 25 kg and 30 kg Canadian standard bags (yields 0.010 and 0.012 m³)
