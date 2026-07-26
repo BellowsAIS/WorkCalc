@@ -1,6 +1,6 @@
 # CLAUDE.md — Base Instructions
 
-**Version:** 2026-07-23-01
+**Version:** 2026-07-26-01
 
 These rules apply to every project. Project-specific overrides and extensions
 live in `CLAUDE.project.md`. When the two files conflict, `CLAUDE.project.md` wins.
@@ -36,9 +36,9 @@ no local machine is required or expected to be part of the workflow.
 
 ## Pull requests and merges
 
-- Open a pull request proactively once work is complete — do not wait to be asked.
-- Do not merge without explicit user approval. Always ask, even if the PR looks
-  ready and all checks pass.
+- Open a pull request immediately after every push — do not wait to be asked.
+- After opening the PR, explicitly prompt the user to approve the merge.
+- Do not merge without explicit user approval.
 - Once the user approves, merge directly — do not send them into the GitHub UI
   to do it themselves.
 
@@ -171,6 +171,7 @@ repo. Bump the version at the top and add a row here whenever this file changes.
 
 | Version        | Summary                              |
 |----------------|---------------------------------------|
+| 2026-07-26-01  | Tightened PR rule: open PR immediately after every push and prompt user to merge |
 | 2026-07-23-01  | Added "Development workflow" section recording web-only Claude Code session model |
 | 2026-07-18-04  | Extended the versioning/change-history convention to CLAUDE.project.md |
 | 2026-07-18-03  | Added "Global vs. local changes" section documenting the CLAUDE.md vs CLAUDE.project.md triage rule |
