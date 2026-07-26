@@ -27,6 +27,7 @@ The minimum set of features required for a usable v1 Play Store release.
 - 📋 Dark mode via `prefers-color-scheme`
 - 📋 Bubblewrap TWA build — signed APK/AAB for Play Store submission
 - 📋 Play Store listing — description, screenshots, content rating
+- 📋 Branding update — app name, logo, icon design, colour scheme, and typography refresh
 
 ---
 
