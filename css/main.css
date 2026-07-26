@@ -1,0 +1,362 @@
+/* ===== Variables ===== */
+:root {
+  --bg:            #f0f0f0;
+  --surface:       #ffffff;
+  --border:        #cccccc;
+  --text:          #111111;
+  --text-muted:    #666666;
+  --primary:       #0057a8;
+  --primary-fg:    #ffffff;
+  --header-bg:     #1a1a1a;
+  --header-fg:     #ffffff;
+  --nav-bg:        #ffffff;
+  --nav-border:    #e0e0e0;
+  --nav-active:    #0057a8;
+  --nav-inactive:  #888888;
+  --input-bg:      #ffffff;
+  --result-bg:     #e8f0fb;
+  --result-border: #0057a8;
+  --danger:        #c0392b;
+  --header-h:      52px;
+  --nav-h:         64px;
+  --radius:        10px;
+  --gap:           16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:            #111111;
+    --surface:       #1c1c1e;
+    --border:        #383838;
+    --text:          #f2f2f7;
+    --text-muted:    #8e8e93;
+    --primary:       #4da6ff;
+    --primary-fg:    #000000;
+    --header-bg:     #000000;
+    --header-fg:     #f2f2f7;
+    --nav-bg:        #1c1c1e;
+    --nav-border:    #383838;
+    --nav-active:    #4da6ff;
+    --nav-inactive:  #636366;
+    --input-bg:      #2c2c2e;
+    --result-bg:     #1a2940;
+    --result-border: #4da6ff;
+    --danger:        #ff453a;
+  }
+}
+
+/* ===== Reset ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { height: 100%; -webkit-text-size-adjust: 100%; }
+
+body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ===== Header ===== */
+#app-header {
+  flex: 0 0 var(--header-h);
+  height: var(--header-h);
+  background: var(--header-bg);
+  color: var(--header-fg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 10;
+}
+
+.header-brand { display: flex; align-items: baseline; gap: 8px; }
+
+.app-name {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.app-version {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  font-variant-numeric: tabular-nums;
+}
+
+.unit-toggle {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--header-fg);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  min-height: 36px;
+  min-width: 80px;
+}
+.unit-toggle:hover { background: rgba(255, 255, 255, 0.25); }
+.unit-toggle:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+/* ===== Main ===== */
+#app-main {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ===== Panels ===== */
+.panel {
+  display: none;
+  padding: var(--gap);
+  padding-bottom: calc(var(--gap) + 8px);
+  max-width: 480px;
+  margin: 0 auto;
+}
+.panel.active { display: block; }
+
+.panel-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* ===== Calculator form ===== */
+.calc-form { display: flex; flex-direction: column; gap: 12px; }
+
+.input-group { display: flex; flex-direction: column; gap: 4px; }
+
+.input-group label,
+.waste-section label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.input-wrap {
+  display: flex;
+  align-items: center;
+  background: var(--input-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+.input-wrap:focus-within { border-color: var(--primary); }
+
+.input-wrap input[type="number"],
+.input-wrap select {
+  flex: 1 1 auto;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 17px;
+  padding: 12px 14px;
+  min-height: 48px;
+  width: 0;
+  outline: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.input-wrap input[type="number"]::placeholder { color: var(--border); }
+
+.input-wrap select {
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 36px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  width: auto;
+}
+
+.unit-label {
+  flex: 0 0 auto;
+  font-size: 14px;
+  color: var(--text-muted);
+  padding: 0 14px 0 4px;
+  font-weight: 500;
+  min-width: 28px;
+  text-align: left;
+}
+
+/* ===== Waste section ===== */
+.waste-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+.waste-section label { white-space: nowrap; }
+.waste-section .input-wrap { flex: 0 0 110px; }
+
+/* ===== Result card ===== */
+.result-card {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--result-bg);
+  border: 1.5px solid var(--result-border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-top: 20px;
+}
+.result-card.visible { display: flex; }
+
+.result-value {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.result-formula {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.result-waste {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.copy-btn {
+  align-self: flex-start;
+  background: var(--primary);
+  color: var(--primary-fg);
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 18px;
+  min-height: 44px;
+  cursor: pointer;
+  margin-top: 4px;
+  -webkit-tap-highlight-color: transparent;
+}
+.copy-btn:active { opacity: 0.75; }
+
+/* ===== History panel ===== */
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.history-header .panel-title { margin-bottom: 0; }
+
+.clear-btn {
+  background: none;
+  border: 1.5px solid var(--danger);
+  color: var(--danger);
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  cursor: pointer;
+  min-height: 36px;
+}
+
+.history-empty {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 15px;
+  padding-top: 40px;
+  line-height: 1.7;
+}
+
+.history-list { display: flex; flex-direction: column; gap: 10px; }
+
+.history-entry {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+}
+
+.history-entry-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.history-entry-module {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--primary);
+}
+
+.history-entry-time {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.history-entry-result {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.history-entry-formula {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+/* ===== Bottom nav ===== */
+#app-nav {
+  flex: 0 0 auto;
+  background: var(--nav-bg);
+  border-top: 1px solid var(--nav-border);
+  display: flex;
+  height: var(--nav-h);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.nav-item {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background: none;
+  border: none;
+  color: var(--nav-inactive);
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 2px;
+  min-height: 48px;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.1s;
+}
+
+.nav-item svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nav-item.active { color: var(--nav-active); }
+.nav-item:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
