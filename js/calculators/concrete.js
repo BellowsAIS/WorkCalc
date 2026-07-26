@@ -1,3 +1,57 @@
+import { fmt } from '../units.js';
+
+const BAG_YIELD = { '25': 0.010, '30': 0.012 };
+
+function buildResult(volM3, calcType, inputs, unitSystem, waste, bagSize) {
+  const yieldPerBag = BAG_YIELD[bagSize] ?? 0.010;
+  const bags = Math.ceil(volM3 / yieldPerBag);
+
+  let volDisplay, formula;
+
+  if (unitSystem === 'metric') {
+    const L = inputs.length;
+    const W = inputs.width;
+    const T = inputs.thickness;
+    volDisplay = `${fmt(volM3)} m³`;
+
+    if (calcType === 'pier') {
+      formula = `π × (${fmt(L / 2)} m)² × ${fmt(T / 1000)} m = ${fmt(volM3)} m³`;
+    } else {
+      const label = calcType === 'footing' ? 'Depth' : 'Thickness';
+      formula = `${fmt(L)} m × ${fmt(W)} m × ${fmt(T)} mm ÷ 1,000 = ${fmt(volM3)} m³`;
+      formula = `Length × Width × ${label}: ${fmt(L)} m × ${fmt(W)} m × ${fmt(T)} mm ÷ 1,000 = ${fmt(volM3)} m³`;
+    }
+  } else {
+    const volFt3 = volM3 * 35.3147;
+    const L = inputs.length;
+    const W = inputs.width;
+    const T = inputs.thickness;
+    volDisplay = `${fmt(volFt3)} ft³`;
+
+    if (calcType === 'pier') {
+      formula = `π × (${fmt(L / 2)} ft)² × ${fmt(T / 12, 3)} ft = ${fmt(volFt3)} ft³`;
+    } else {
+      const label = calcType === 'footing' ? 'Depth' : 'Thickness';
+      formula = `Length × Width × ${label}: ${fmt(L)} ft × ${fmt(W)} ft × ${fmt(T)} in ÷ 12 = ${fmt(volFt3)} ft³`;
+    }
+  }
+
+  const display = `${volDisplay}  ·  ${bags.toLocaleString('en-CA')} bags (${bagSize} kg)`;
+
+  let wasteAdjusted = null;
+  if (waste > 0) {
+    const volWaste = volM3 * (1 + waste / 100);
+    const bagsWaste = Math.ceil(volWaste / yieldPerBag);
+    if (unitSystem === 'metric') {
+      wasteAdjusted = `With ${waste}% waste: ${fmt(volWaste)} m³  ·  ${bagsWaste.toLocaleString('en-CA')} bags`;
+    } else {
+      wasteAdjusted = `With ${waste}% waste: ${fmt(volWaste * 35.3147)} ft³  ·  ${bagsWaste.toLocaleString('en-CA')} bags`;
+    }
+  }
+
+  return { display, formula, wasteAdjusted };
+}
+
 export default {
   id: 'concrete',
   label: 'Concrete',
@@ -11,8 +65,8 @@ export default {
         { value: 'pier',    label: 'Round pier' },
       ],
     },
-    { id: 'length',    label: 'Length',    unit: { metric: 'm',  imperial: 'ft' }, min: 0 },
-    { id: 'width',     label: 'Width',     unit: { metric: 'm',  imperial: 'ft' }, min: 0 },
+    { id: 'length',    label: 'Length / Diameter', unit: { metric: 'm',  imperial: 'ft' }, min: 0 },
+    { id: 'width',     label: 'Width',             unit: { metric: 'm',  imperial: 'ft' }, min: 0 },
     { id: 'thickness', label: 'Thickness / Depth', unit: { metric: 'mm', imperial: 'in' }, min: 0 },
     {
       id: 'bag-size', label: 'Bag size', type: 'select',
@@ -23,7 +77,26 @@ export default {
     },
   ],
 
-  calculate(inputs, unitSystem, wasteFactor) {
-    return null; // implementation coming
+  calculate(inputs, unitSystem) {
+    const calcType = inputs['calc-type'] || 'slab';
+    const bagSize  = inputs['bag-size']  || '25';
+    const waste    = inputs.waste        || 0;
+
+    const mPerLen   = unitSystem === 'metric' ? 1      : 0.3048;  // ft → m
+    const mPerThick = unitSystem === 'metric' ? 0.001  : 0.0254;  // mm or in → m
+
+    const L = inputs.length    * mPerLen;
+    const W = inputs.width     * mPerLen;
+    const T = inputs.thickness * mPerThick;
+
+    if (calcType === 'pier') {
+      if (L <= 0 || T <= 0) return null;
+      const volM3 = Math.PI * (L / 2) ** 2 * T;
+      return buildResult(volM3, calcType, inputs, unitSystem, waste, bagSize);
+    }
+
+    if (L <= 0 || W <= 0 || T <= 0) return null;
+    const volM3 = L * W * T;
+    return buildResult(volM3, calcType, inputs, unitSystem, waste, bagSize);
   },
 };

@@ -6,6 +6,17 @@
 
 ## v01_00_000 — Unreleased
 
+### Concrete calculator (in progress)
+- Implemented `js/calculators/concrete.js` — slab, footing/rectangular pier, and round pier volume
+- Bag count for 25 kg and 30 kg Canadian standard bags (yields 0.010 and 0.012 m³)
+- Full metric and imperial support; waste-adjusted volume and bag count
+- Plain-language formula displayed beneath every result
+- Bumped service worker cache to `cancalc-v01_00_001` to push updated module to clients
+
+---
+
+## v01_00_000 — Scaffold
+
 Initial app scaffold. Full UI shell with navigation, unit toggle, and history.
 Calculator modules are stubbed — all six accept inputs but return no results yet.
 

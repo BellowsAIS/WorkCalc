@@ -12,7 +12,7 @@ The minimum set of features required for a usable v1 Play Store release.
 
 - ✅ Project scaffold — folder structure, `index.html` shell, `manifest.json`, `service-worker.js`
 - ✅ App shell — bottom navigation bar, global imperial/metric toggle, localStorage persistence
-- 📋 Concrete calculator — slab volume, footing/pier volume, bag count (25 kg and 30 kg)
+- ✅ Concrete calculator — slab volume, footing/pier volume, bag count (25 kg and 30 kg)
 - 📋 Lumber & framing calculator — board feet, stud count (12"/16"/24" o/c), nominal vs actual sizing
 - 📋 Masonry calculator — brick and block count, mortar volume, opening deductions
 - 📋 Roofing calculator — roof squares, shingle bundles, rafter length, ridge length
