@@ -31,6 +31,10 @@ function calcStuds(inputs, unitSystem, waste) {
 
   const count = Math.floor(lengthM / spacingM) + 1;
 
+  const heightVal  = inputs['wall-height'] || 0;
+  const heightUnit = unitSystem === 'metric' ? 'm' : 'ft';
+  const heightStr  = heightVal > 0 ? `${fmt(heightVal)} ${heightUnit} each` : null;
+
   let formula;
   if (unitSystem === 'metric') {
     formula = `${fmt(inputs.length)} m ÷ ${spacingMm} mm + 1 = ${count} studs`;
@@ -38,11 +42,16 @@ function calcStuds(inputs, unitSystem, waste) {
     formula = `${fmt(inputs.length)} ft ÷ ${SPACING_LABEL[inputs.spacing] ?? spacingMm + 'mm'} + 1 = ${count} studs`;
   }
 
-  const display = `${count.toLocaleString('en-CA')} studs`;
+  const display = heightStr
+    ? `${count.toLocaleString('en-CA')} studs  ·  ${heightStr}`
+    : `${count.toLocaleString('en-CA')} studs`;
 
   let wasteAdjusted = null;
   if (waste > 0) {
-    wasteAdjusted = `With ${waste}% waste: ${Math.ceil(count * (1 + waste / 100)).toLocaleString('en-CA')} studs`;
+    const countW = Math.ceil(count * (1 + waste / 100));
+    wasteAdjusted = heightStr
+      ? `With ${waste}% waste: ${countW.toLocaleString('en-CA')} studs  ·  ${heightStr}`
+      : `With ${waste}% waste: ${countW.toLocaleString('en-CA')} studs`;
   }
 
   return { display, formula, wasteAdjusted };
@@ -61,7 +70,8 @@ export default {
         { value: 'studs',      label: 'Stud count' },
       ],
     },
-    { id: 'length',    label: 'Length / Wall length',  hint: 'For board feet: the length of one piece. For stud count: the total wall length to be framed.', unit: { metric: 'm',  imperial: 'ft' }, min: 0 },
+    { id: 'length',      label: 'Length / Wall length', hint: 'For board feet: the length of one piece. For stud count: the total wall length to be framed.', unit: { metric: 'm', imperial: 'ft' }, min: 0 },
+    { id: 'wall-height', label: 'Wall height',          hint: 'Height from floor to top plate. Shown in the result for reference when ordering lumber — does not affect stud count.', visibleWhen: { 'calc-type': 'studs' }, unit: { metric: 'm', imperial: 'ft' }, min: 0 },
     { id: 'thickness', label: 'Stud thickness — nominal', hint: 'Nominal (stated) thickness — enter 2 for a 2×4, not the actual 1½". Nominal dimensions are used in the board-foot formula.', visibleWhen: { 'calc-type': 'board-feet' }, unit: { metric: 'mm', imperial: 'in' }, min: 0 },
     { id: 'width',     label: 'Stud width — nominal',   hint: 'Nominal (stated) width — enter 4 for a 2×4, not the actual 3½". Nominal dimensions are used in the board-foot formula.',   visibleWhen: { 'calc-type': 'board-feet' }, unit: { metric: 'mm', imperial: 'in' }, min: 0 },
     {

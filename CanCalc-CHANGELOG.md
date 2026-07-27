@@ -49,6 +49,7 @@
 ### Lumber & framing calculator
 - Board feet: (thickness_nom × width_nom × length) ÷ 12 — always computed in nominal inches/feet regardless of unit toggle
 - Stud count: floor(wall length ÷ spacing) + 1 for 300 mm (12"), 400 mm (16"), 600 mm (24") o/c
+- Wall height field added to stud count mode — displayed in result as stud length for ordering reference (e.g. "40 studs · 2.44 m each"); does not affect count
 - Waste factor applied to both calculations
 - Bumped service worker cache to `cancalc-v01_00_002`
 
