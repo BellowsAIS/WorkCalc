@@ -6,6 +6,18 @@
 
 ## v01_00_000 — Unreleased
 
+### UX — Conditional field visibility
+- Irrelevant input fields now hidden automatically based on calc-type selection
+- Concrete: Width hidden when Round pier is selected (not part of π × r² × depth formula)
+- Lumber: Stud thickness and Stud width hidden when Stud count is selected
+- General `visibleWhen` property added to input definitions; works for any future calculator
+
+### UX — Input hints
+- Every input field on every calculator now has an ⓘ icon next to its label
+- Tapping or clicking the icon reveals a plain-language hint explaining what the field expects
+- Second tap collapses the hint; works on both mobile and desktop
+- Hints added to all 30+ input fields across all six calculators
+
 ### Masonry calculator
 - Brick count (190 × 90 × 57 mm) and concrete block count (390 × 190 × 190 mm)
 - Adjustable mortar joint width (default 10 mm); mortar volume computed from unit count
