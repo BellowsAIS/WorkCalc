@@ -115,6 +115,8 @@ function renderPanels() {
     history.clear();
     renderHistory();
   });
+
+  MODULES.forEach(mod => refreshFieldVisibility(mod));
 }
 
 function inputHtml(modId, input) {
@@ -187,12 +189,41 @@ function refreshUnitLabels() {
   });
 }
 
+// ── Field visibility ─────────────────────────────────────────────────────────
+
+function refreshFieldVisibility(mod) {
+  const hasDeps = mod.inputs.some(inp => inp.visibleWhen);
+  if (!hasDeps) return;
+
+  const selectValues = {};
+  for (const inp of mod.inputs) {
+    if (inp.type === 'select') {
+      const el = document.getElementById(`${mod.id}-${inp.id}`);
+      if (el) selectValues[inp.id] = el.value;
+    }
+  }
+
+  for (const inp of mod.inputs) {
+    if (!inp.visibleWhen) continue;
+    const group = document.getElementById(`${mod.id}-${inp.id}`)?.closest('.input-group');
+    if (!group) continue;
+    const visible = Object.entries(inp.visibleWhen).every(([key, val]) => {
+      const allowed = Array.isArray(val) ? val : [val];
+      return allowed.includes(selectValues[key]);
+    });
+    group.hidden = !visible;
+  }
+}
+
 // ── Calculation ───────────────────────────────────────────────────────────────
 
 function onInput(e) {
   if (!e.target.matches('.calc-input, .waste-input')) return;
   const mod = MODULES.find(m => m.id === e.target.dataset.module);
-  if (mod) runCalc(mod);
+  if (mod) {
+    refreshFieldVisibility(mod);
+    runCalc(mod);
+  }
 }
 
 function runCalc(mod) {

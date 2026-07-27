@@ -62,8 +62,8 @@ export default {
       ],
     },
     { id: 'length',    label: 'Length / Wall length',  hint: 'For board feet: the length of one piece. For stud count: the total wall length to be framed.', unit: { metric: 'm',  imperial: 'ft' }, min: 0 },
-    { id: 'thickness', label: 'Thickness — nominal',   hint: 'Nominal (stated) thickness — enter 2 for a 2×4, not the actual 1½". Nominal dimensions are used in the board-foot formula.', unit: { metric: 'mm', imperial: 'in' }, min: 0 },
-    { id: 'width',     label: 'Width — nominal',       hint: 'Nominal (stated) width — enter 4 for a 2×4, not the actual 3½". Nominal dimensions are used in the board-foot formula.', unit: { metric: 'mm', imperial: 'in' }, min: 0 },
+    { id: 'thickness', label: 'Stud thickness — nominal', hint: 'Nominal (stated) thickness — enter 2 for a 2×4, not the actual 1½". Nominal dimensions are used in the board-foot formula.', visibleWhen: { 'calc-type': 'board-feet' }, unit: { metric: 'mm', imperial: 'in' }, min: 0 },
+    { id: 'width',     label: 'Stud width — nominal',   hint: 'Nominal (stated) width — enter 4 for a 2×4, not the actual 3½". Nominal dimensions are used in the board-foot formula.',   visibleWhen: { 'calc-type': 'board-feet' }, unit: { metric: 'mm', imperial: 'in' }, min: 0 },
     {
       id: 'spacing', label: 'Stud spacing', type: 'select',
       hint: 'On-centre spacing between studs. 400 mm (16") is most common for exterior and load-bearing walls; 600 mm (24") suits non-load-bearing partitions.',
