@@ -1,4 +1,4 @@
-const CACHE = 'cancalc-v01_00_005';
+const CACHE = 'cancalc-v01_00_006';
 
 const ASSETS = [
   '/',
