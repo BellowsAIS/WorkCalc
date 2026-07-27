@@ -396,3 +396,41 @@ body {
 
 .nav-item.active { color: var(--nav-active); }
 .nav-item:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
+
+/* ===== Result disclaimer ===== */
+.result-disclaimer {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-top: 2px;
+  opacity: 0.8;
+}
+
+/* ===== About panel ===== */
+.about-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.about-version {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.about-heading {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.about-section p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text);
+}

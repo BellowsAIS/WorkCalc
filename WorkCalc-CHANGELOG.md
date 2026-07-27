@@ -1,8 +1,17 @@
 # WorkCalc-CHANGELOG.md
 
-**Version:** v01_00_012
+**Version:** v01_00_013
 
 ---
+
+## v01_00_013 — Unreleased
+
+### Legal — Disclaimer and About screen
+- Added About panel in bottom nav with full liability disclaimer, governing law (Ontario), and BAIS company details
+- Added short disclaimer line ("Estimates only — verify before ordering. Use at your own risk.") to every result card
+- Updated company name throughout to Bellows Applied Intelligence Solutions (BAIS)
+- Updated `CLAUDE.project.md` package ID from `ca.renniesolutions.workcalc` to `ca.bais.workcalc`
+- Bumped service worker cache to `workcalc-v01_00_013`
 
 ## v01_00_012 — Unreleased
 
