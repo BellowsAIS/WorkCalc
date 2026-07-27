@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- Light blue shadow lines -->
-  <path d="M3 13 Q28 20 50 32" stroke="#a8c4e0" stroke-width="3" stroke-linecap="round" fill="none"/>
-  <path d="M3 53 Q28 46 50 32" stroke="#a8c4e0" stroke-width="3" stroke-linecap="round" fill="none"/>
-  <!-- Main blue converging lines -->
-  <path d="M3 9 Q28 18 50 32" stroke="#1f5fa6" stroke-width="5" stroke-linecap="round" fill="none"/>
-  <path d="M3 57 Q28 48 50 32" stroke="#1f5fa6" stroke-width="5" stroke-linecap="round" fill="none"/>
+  <!-- Light blue shadow lines — outside the main lines -->
+  <path d="M3 5 C20 5 35 24 50 32" stroke="#a8c4e0" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M3 59 C20 59 35 40 50 32" stroke="#a8c4e0" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <!-- Main blue converging lines — curving inward toward the tip -->
+  <path d="M3 9 C20 9 35 28 50 32" stroke="#1f5fa6" stroke-width="5" stroke-linecap="round" fill="none"/>
+  <path d="M3 55 C20 55 35 36 50 32" stroke="#1f5fa6" stroke-width="5" stroke-linecap="round" fill="none"/>
   <!-- Red node connector lines -->
   <line x1="50" y1="32" x2="50" y2="22" stroke="#e05555" stroke-width="1.5"/>
   <line x1="50" y1="32" x2="59" y2="32" stroke="#e05555" stroke-width="1.5"/>
