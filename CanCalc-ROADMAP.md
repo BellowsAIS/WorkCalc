@@ -18,13 +18,15 @@ The minimum set of features required for a usable v1 Play Store release.
 - ✅ Roofing calculator — roof squares, shingle bundles, rafter length, ridge length
 - ✅ Paint & coatings calculator — wall area, litres per coat, door/window deductions, coat count
 - ✅ Excavation calculator — cut/fill volume, truck load count, swell factor presets
-- 📋 Waste factor field on every calculator (default 10%, range 0–50%)
-- 📋 Live result updates on every keystroke (no submit button)
-- 📋 Formula display beneath every result (plain language)
-- 📋 Copy result to clipboard (plain text, suitable for quotes/emails)
-- 📋 Calculation history — last 20 results, stored in localStorage
-- 📋 Full offline support via cache-first service worker
-- 📋 Dark mode via `prefers-color-scheme`
+- ✅ Waste factor field on every calculator (default 10%, range 0–50%)
+- ✅ Live result updates on every keystroke (no submit button)
+- ✅ Formula display beneath every result (plain language)
+- ✅ Copy result to clipboard (plain text, suitable for quotes/emails)
+- ✅ Calculation history — last 20 results, stored in localStorage
+- ✅ Full offline support via cache-first service worker
+- ✅ Dark mode via `prefers-color-scheme`
+- ✅ Input hints — ⓘ icon on every input field reveals plain-language guidance on tap/click
+- ✅ Conditional field visibility — irrelevant fields hidden automatically based on calc-type selection
 - 📋 Bubblewrap TWA build — signed APK/AAB for Play Store submission
 - 📋 Play Store listing — description, screenshots, content rating
 - 📋 Branding update — app name, logo, icon design, colour scheme, and typography refresh
