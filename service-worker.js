@@ -15,6 +15,9 @@ const ASSETS = [
   '/WorkCalc/js/calculators/paint.js',
   '/WorkCalc/js/calculators/excavation.js',
   '/WorkCalc/icons/favicon.svg',
+  '/WorkCalc/icons/icon-192.png',
+  '/WorkCalc/icons/icon-512.png',
+  '/WorkCalc/icons/icon-maskable.png',
 ];
 
 self.addEventListener('install', e => {
