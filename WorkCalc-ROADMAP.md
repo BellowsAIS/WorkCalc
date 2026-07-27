@@ -1,6 +1,6 @@
 # WorkCalc-ROADMAP.md
 
-**Version:** v01_00_012
+**Version:** v01_00_013
 
 Status markers: 💡 Idea · 📋 Planned · 🔄 In Progress · ✅ Done
 
@@ -27,6 +27,7 @@ The minimum set of features required for a usable v1 Play Store release.
 - ✅ ~~Dark mode via `prefers-color-scheme`~~
 - ✅ ~~Input hints — ⓘ icon on every input field reveals plain-language guidance on tap/click~~
 - ✅ ~~Conditional field visibility — irrelevant fields hidden automatically based on calc-type selection~~
+- ✅ ~~Legal disclaimer — About panel with BAIS liability disclaimer, governing law, and per-result "Estimates only" notice~~
 - 📋 Bubblewrap TWA build — signed APK/AAB for Play Store submission
 - 📋 Play Store listing — description, screenshots, content rating
 - ✅ ~~Branding update — app name, logo, icon design, colour scheme, and typography refresh~~

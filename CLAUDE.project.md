@@ -1,6 +1,6 @@
 # CLAUDE.project.md — WorkCalc
 
-**Version:** 2026-07-26-01
+**Version:** 2026-07-27-01
 
 Project-specific instructions. These extend and, where noted, override `CLAUDE.md`.
 
@@ -17,6 +17,8 @@ The app is fully self-contained — no login, no backend, no paid APIs, no
 external data. All logic runs in the browser. It is distributed via the Google
 Play Store using a Trusted Web Activity (TWA) wrapper built with Bubblewrap,
 and is also installable directly from any browser as a standard PWA.
+
+**Company:** Bellows Applied Intelligence Solutions (BAIS), Ontario, Canada
 
 ---
 
@@ -236,8 +238,7 @@ Follows `CLAUDE.md` conventions:
 
 After the PWA is complete and tested:
 1. Run `npx @bubblewrap/cli init` to generate the Android project
-2. Set `packageId` to `ca.renniesolutions.workcalc` (placeholder — confirm
-   before submission)
+2. Set `packageId` to `ca.bais.workcalc` (confirm before submission)
 3. Build a signed APK/AAB using the Bubblewrap CLI
 4. Submit to Google Play via the Play Console
 5. Full step-by-step instructions are in `Documentation/playstore-guide.md`
@@ -249,4 +250,5 @@ After the PWA is complete and tested:
 
 | Version       | Summary                                                               |
 |---------------|-----------------------------------------------------------------------|
+| 2026-07-27-01 | Updated company name to Bellows Applied Intelligence Solutions (BAIS); updated packageId to ca.bais.workcalc |
 | 2026-07-26-01 | Initial version — project overview, tech stack, module specs, UX/design requirements, versioning, Play Store notes |
