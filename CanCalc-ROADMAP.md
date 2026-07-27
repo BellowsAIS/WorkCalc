@@ -30,6 +30,8 @@ The minimum set of features required for a usable v1 Play Store release.
 - 📋 Bubblewrap TWA build — signed APK/AAB for Play Store submission
 - 📋 Play Store listing — description, screenshots, content rating
 - 📋 Branding update — app name, logo, icon design, colour scheme, and typography refresh
+- 📋 Lumber calc: show board length in result summary to assist with purchasing
+- 📋 Dropdown imperial support — select options that currently show metric-only values (e.g. stud spacing in mm, bag sizes in kg) need imperial equivalents; display the correct label set based on the active unit toggle
 
 ---
 
@@ -66,6 +68,7 @@ Worthwhile additions once the core is stable.
 
 Not committed — needs more thought before deciding.
 
+- 💡 Additional calculation types per calculator page (e.g. more concrete pour types, lumber cut patterns)
 - 💡 QR code sharing — share a calculation result as a scannable code on site
 - 💡 Photo attachment on a history entry — snap the site condition with the calc
 - 💡 Simple material cost estimator — user enters unit price, app multiplies by quantity
