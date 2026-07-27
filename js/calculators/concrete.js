@@ -78,8 +78,8 @@ export default {
           { value: '30', label: '30 kg  (yield 0.012 m³)' },
         ],
         imperial: [
-          { value: '25', label: '25 kg  (yield 0.353 ft³)' },
-          { value: '30', label: '30 kg  (yield 0.424 ft³)' },
+          { value: '25', label: '55 lb (25 kg)  ·  yield 0.353 ft³' },
+          { value: '30', label: '66 lb (30 kg)  ·  yield 0.424 ft³' },
         ],
       },
     },
