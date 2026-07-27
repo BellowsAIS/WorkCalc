@@ -13,10 +13,16 @@ export default {
     {
       id: 'unit-type', label: 'Masonry unit', type: 'select',
       hint: 'Standard Canadian brick: 190 × 90 × 57 mm face size. Standard concrete block (CMU): 390 × 190 mm face.',
-      options: [
-        { value: 'brick', label: 'Brick  (190 × 90 × 57 mm)' },
-        { value: 'block', label: 'Concrete block  (390 × 190 × 190 mm)' },
-      ],
+      options: {
+        metric:   [
+          { value: 'brick', label: 'Brick  (190 × 90 × 57 mm)' },
+          { value: 'block', label: 'Concrete block  (390 × 190 × 190 mm)' },
+        ],
+        imperial: [
+          { value: 'brick', label: 'Brick  (7⅝ × 3⅝ × 2¼ in)' },
+          { value: 'block', label: 'Concrete block  (15⅝ × 7⅝ × 7⅝ in)' },
+        ],
+      },
     },
     { id: 'wall-length', label: 'Wall length',        hint: 'Total face length of the wall, corner to corner, including any openings.', unit: { metric: 'm',  imperial: 'ft' }, min: 0 },
     { id: 'wall-height', label: 'Wall height',        hint: 'Height from the top of the footing (or floor slab) to the top of the finished wall.', unit: { metric: 'm',  imperial: 'ft' }, min: 0 },

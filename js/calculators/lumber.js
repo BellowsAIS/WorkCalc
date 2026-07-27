@@ -78,11 +78,18 @@ export default {
       id: 'spacing', label: 'Stud spacing', type: 'select',
       hint: 'On-centre spacing between studs. 400 mm (16") is most common for exterior and load-bearing walls; 600 mm (24") suits non-load-bearing partitions.',
       visibleWhen: { 'calc-type': 'studs' },
-      options: [
-        { value: '300', label: '300 mm  (12" o/c)' },
-        { value: '400', label: '400 mm  (16" o/c)' },
-        { value: '600', label: '600 mm  (24" o/c)' },
-      ],
+      options: {
+        metric:   [
+          { value: '300', label: '300 mm  (12" o/c)' },
+          { value: '400', label: '400 mm  (16" o/c)' },
+          { value: '600', label: '600 mm  (24" o/c)' },
+        ],
+        imperial: [
+          { value: '300', label: '12"  (300 mm) o/c' },
+          { value: '400', label: '16"  (400 mm) o/c' },
+          { value: '600', label: '24"  (600 mm) o/c' },
+        ],
+      },
     },
   ],
 

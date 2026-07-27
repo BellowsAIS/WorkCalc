@@ -71,11 +71,17 @@ export default {
     { id: 'thickness', label: 'Thickness / Depth', hint: 'Slab thickness or footing/pier depth. Enter in mm (metric) or inches (imperial).', unit: { metric: 'mm', imperial: 'in' }, min: 0 },
     {
       id: 'bag-size', label: 'Bag size', type: 'select',
-      hint: '25 kg bags yield ~0.010 m³; 30 kg bags yield ~0.012 m³. Check the bag label for the exact yield.',
-      options: [
-        { value: '25', label: '25 kg  (yield 0.010 m³)' },
-        { value: '30', label: '30 kg  (yield 0.012 m³)' },
-      ],
+      hint: '25 kg bags yield ~0.010 m³ (0.353 ft³); 30 kg bags yield ~0.012 m³ (0.424 ft³). Check the bag label for the exact yield.',
+      options: {
+        metric:   [
+          { value: '25', label: '25 kg  (yield 0.010 m³)' },
+          { value: '30', label: '30 kg  (yield 0.012 m³)' },
+        ],
+        imperial: [
+          { value: '25', label: '25 kg  (yield 0.353 ft³)' },
+          { value: '30', label: '30 kg  (yield 0.424 ft³)' },
+        ],
+      },
     },
   ],
 
