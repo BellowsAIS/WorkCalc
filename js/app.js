@@ -118,10 +118,24 @@ function renderPanels() {
 }
 
 function inputHtml(modId, input) {
+  const hintId     = `hint-${modId}-${input.id}`;
+  const hintToggle = input.hint
+    ? `<button class="hint-toggle" aria-label="More information" aria-expanded="false" data-hint-id="${hintId}">ⓘ</button>`
+    : '';
+  const hintText = input.hint
+    ? `<div class="hint-text" id="${hintId}" hidden>${input.hint}</div>`
+    : '';
+  const labelRow = `
+    <div class="label-row">
+      <label for="${modId}-${input.id}">${input.label}</label>
+      ${hintToggle}
+    </div>
+    ${hintText}`;
+
   if (input.type === 'select') {
     return `
       <div class="input-group">
-        <label for="${modId}-${input.id}">${input.label}</label>
+        ${labelRow}
         <div class="input-wrap">
           <select id="${modId}-${input.id}" class="calc-input" data-module="${modId}">
             ${input.options.map(o => `<option value="${o.value}">${o.label}</option>`).join('')}
@@ -136,7 +150,7 @@ function inputHtml(modId, input) {
 
   return `
     <div class="input-group">
-      <label for="${modId}-${input.id}">${input.label}</label>
+      ${labelRow}
       <div class="input-wrap">
         <input type="number" id="${modId}-${input.id}" inputmode="decimal"
           class="calc-input" min="${input.min ?? 0}" step="any" placeholder="0"
@@ -218,8 +232,17 @@ function displayResult(modId, result) {
 // ── Copy ──────────────────────────────────────────────────────────────────────
 
 function onMainClick(e) {
-  const btn = e.target.closest('.copy-btn');
-  if (btn) handleCopy(btn.dataset.copy);
+  const copyBtn = e.target.closest('.copy-btn');
+  if (copyBtn) { handleCopy(copyBtn.dataset.copy); return; }
+
+  const hintBtn = e.target.closest('.hint-toggle');
+  if (hintBtn) {
+    const hintEl = document.getElementById(hintBtn.dataset.hintId);
+    if (hintEl) {
+      hintEl.hidden = !hintEl.hidden;
+      hintBtn.setAttribute('aria-expanded', String(!hintEl.hidden));
+    }
+  }
 }
 
 function handleCopy(modId) {

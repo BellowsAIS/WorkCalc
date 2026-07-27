@@ -7,11 +7,12 @@ export default {
   label: 'Excavation',
   defaultWasteFactor: 0,
   inputs: [
-    { id: 'length',         label: 'Length',                      unit: { metric: 'm',  imperial: 'ft'  }, min: 0 },
-    { id: 'width',          label: 'Width',                       unit: { metric: 'm',  imperial: 'ft'  }, min: 0 },
-    { id: 'depth',          label: 'Depth',                       unit: { metric: 'm',  imperial: 'ft'  }, min: 0 },
+    { id: 'length',         label: 'Length',          hint: 'Length of the excavation cut, measured at grade.',                                                                          unit: { metric: 'm',  imperial: 'ft'  }, min: 0 },
+    { id: 'width',          label: 'Width',           hint: 'Width of the excavation cut, measured at grade.',                                                                           unit: { metric: 'm',  imperial: 'ft'  }, min: 0 },
+    { id: 'depth',          label: 'Depth',           hint: 'Maximum depth of cut below existing grade.',                                                                               unit: { metric: 'm',  imperial: 'ft'  }, min: 0 },
     {
       id: 'soil-type', label: 'Soil type (swell factor)', type: 'select',
+      hint: 'Determines how much material expands (swells) when excavated. Swell increases the haul volume above the in-place bank volume.',
       options: [
         { value: '1.10', label: 'Sand  (10% swell)' },
         { value: '1.15', label: 'Topsoil  (15% swell)' },
@@ -19,7 +20,7 @@ export default {
         { value: '1.50', label: 'Rock  (50% swell)' },
       ],
     },
-    { id: 'truck-capacity', label: 'Truck capacity',              unit: { metric: 'm³', imperial: 'yd³' }, min: 0 },
+    { id: 'truck-capacity', label: 'Truck capacity',  hint: 'Heaped capacity of haul trucks. Leave at 0 to calculate volume only, without truck load count.',                          unit: { metric: 'm³', imperial: 'yd³' }, min: 0 },
   ],
 
   calculate(inputs, unitSystem) {

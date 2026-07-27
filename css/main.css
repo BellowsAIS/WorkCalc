@@ -132,6 +132,12 @@ body {
 
 .input-group { display: flex; flex-direction: column; gap: 4px; }
 
+.label-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .input-group label,
 .waste-section label {
   font-size: 12px;
@@ -139,6 +145,35 @@ body {
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+.hint-toggle {
+  background: none;
+  border: none;
+  padding: 0 2px;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-style: normal;
+  line-height: 1;
+  opacity: 0.6;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.hint-toggle:hover,
+.hint-toggle:focus-visible { opacity: 1; color: var(--primary); }
+.hint-toggle:focus-visible { outline: 2px solid var(--primary); border-radius: 2px; outline-offset: 1px; }
+
+.hint-text {
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--text-muted);
+  line-height: 1.5;
+  padding: 4px 8px;
+  border-left: 2px solid var(--primary);
+  margin-bottom: 2px;
 }
 
 .input-wrap {

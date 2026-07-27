@@ -55,16 +55,18 @@ export default {
   inputs: [
     {
       id: 'calc-type', label: 'Calculation type', type: 'select',
+      hint: 'Board feet measures lumber volume for ordering material. Stud count estimates the number of vertical framing members for a wall.',
       options: [
         { value: 'board-feet', label: 'Board feet' },
         { value: 'studs',      label: 'Stud count' },
       ],
     },
-    { id: 'length',    label: 'Length / Wall length',  unit: { metric: 'm',  imperial: 'ft' }, min: 0 },
-    { id: 'thickness', label: 'Thickness — nominal',   unit: { metric: 'mm', imperial: 'in' }, min: 0 },
-    { id: 'width',     label: 'Width — nominal',       unit: { metric: 'mm', imperial: 'in' }, min: 0 },
+    { id: 'length',    label: 'Length / Wall length',  hint: 'For board feet: the length of one piece. For stud count: the total wall length to be framed.', unit: { metric: 'm',  imperial: 'ft' }, min: 0 },
+    { id: 'thickness', label: 'Thickness — nominal',   hint: 'Nominal (stated) thickness — enter 2 for a 2×4, not the actual 1½". Nominal dimensions are used in the board-foot formula.', unit: { metric: 'mm', imperial: 'in' }, min: 0 },
+    { id: 'width',     label: 'Width — nominal',       hint: 'Nominal (stated) width — enter 4 for a 2×4, not the actual 3½". Nominal dimensions are used in the board-foot formula.', unit: { metric: 'mm', imperial: 'in' }, min: 0 },
     {
       id: 'spacing', label: 'Stud spacing', type: 'select',
+      hint: 'On-centre spacing between studs. 400 mm (16") is most common for exterior and load-bearing walls; 600 mm (24") suits non-load-bearing partitions.',
       options: [
         { value: '300', label: '300 mm  (12" o/c)' },
         { value: '400', label: '400 mm  (16" o/c)' },

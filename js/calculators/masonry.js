@@ -12,15 +12,16 @@ export default {
   inputs: [
     {
       id: 'unit-type', label: 'Masonry unit', type: 'select',
+      hint: 'Standard Canadian brick: 190 × 90 × 57 mm face size. Standard concrete block (CMU): 390 × 190 mm face.',
       options: [
         { value: 'brick', label: 'Brick  (190 × 90 × 57 mm)' },
         { value: 'block', label: 'Concrete block  (390 × 190 × 190 mm)' },
       ],
     },
-    { id: 'wall-length', label: 'Wall length',          unit: { metric: 'm',  imperial: 'ft' }, min: 0 },
-    { id: 'wall-height', label: 'Wall height',          unit: { metric: 'm',  imperial: 'ft' }, min: 0 },
-    { id: 'joint-width', label: 'Mortar joint',         unit: { metric: 'mm', imperial: 'in' }, min: 0 },
-    { id: 'openings',    label: 'Opening deductions',   unit: { metric: 'm²', imperial: 'ft²' }, min: 0 },
+    { id: 'wall-length', label: 'Wall length',        hint: 'Total face length of the wall, corner to corner, including any openings.', unit: { metric: 'm',  imperial: 'ft' }, min: 0 },
+    { id: 'wall-height', label: 'Wall height',        hint: 'Height from the top of the footing (or floor slab) to the top of the finished wall.', unit: { metric: 'm',  imperial: 'ft' }, min: 0 },
+    { id: 'joint-width', label: 'Mortar joint',       hint: 'Mortar joint thickness between units. Standard is 10 mm. Changing this adjusts both unit count and mortar volume.', unit: { metric: 'mm', imperial: 'in' }, min: 0 },
+    { id: 'openings',    label: 'Opening deductions', hint: 'Total area of all doors and windows in this wall combined. Subtracted from gross wall area before calculating unit count.', unit: { metric: 'm²', imperial: 'ft²' }, min: 0 },
   ],
 
   calculate(inputs, unitSystem) {

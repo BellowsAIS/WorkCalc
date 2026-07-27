@@ -59,17 +59,19 @@ export default {
   inputs: [
     {
       id: 'calc-type', label: 'Calculation type', type: 'select',
+      hint: 'Choose the type of pour: a flat slab, a rectangular footing or pier, or a round (cylindrical) pier.',
       options: [
         { value: 'slab',    label: 'Slab' },
         { value: 'footing', label: 'Footing / rectangular pier' },
         { value: 'pier',    label: 'Round pier' },
       ],
     },
-    { id: 'length',    label: 'Length / Diameter', unit: { metric: 'm',  imperial: 'ft' }, min: 0 },
-    { id: 'width',     label: 'Width',             unit: { metric: 'm',  imperial: 'ft' }, min: 0 },
-    { id: 'thickness', label: 'Thickness / Depth', unit: { metric: 'mm', imperial: 'in' }, min: 0 },
+    { id: 'length',    label: 'Length / Diameter', hint: 'For slabs and footings: the long dimension. For round piers: the outside diameter of the column.', unit: { metric: 'm',  imperial: 'ft' }, min: 0 },
+    { id: 'width',     label: 'Width',             hint: 'The shorter dimension of the pour. Not used for round piers.', unit: { metric: 'm',  imperial: 'ft' }, min: 0 },
+    { id: 'thickness', label: 'Thickness / Depth', hint: 'Slab thickness or footing/pier depth. Enter in mm (metric) or inches (imperial).', unit: { metric: 'mm', imperial: 'in' }, min: 0 },
     {
       id: 'bag-size', label: 'Bag size', type: 'select',
+      hint: '25 kg bags yield ~0.010 m³; 30 kg bags yield ~0.012 m³. Check the bag label for the exact yield.',
       options: [
         { value: '25', label: '25 kg  (yield 0.010 m³)' },
         { value: '30', label: '30 kg  (yield 0.012 m³)' },

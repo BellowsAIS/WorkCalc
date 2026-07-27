@@ -8,13 +8,13 @@ export default {
   label: 'Paint',
   defaultWasteFactor: 10,
   inputs: [
-    { id: 'length',      label: 'Room length',      unit: { metric: 'm',     imperial: 'ft'     }, min: 0 },
-    { id: 'width',       label: 'Room width',       unit: { metric: 'm',     imperial: 'ft'     }, min: 0 },
-    { id: 'height',      label: 'Wall height',      unit: { metric: 'm',     imperial: 'ft'     }, min: 0 },
-    { id: 'doors',       label: 'Doors',            unit: {},                                      min: 0 },
-    { id: 'windows',     label: 'Windows',          unit: {},                                      min: 0 },
-    { id: 'spread-rate', label: 'Spread rate',      unit: { metric: 'm²/L', imperial: 'ft²/gal' }, min: 1 },
-    { id: 'coats',       label: 'Number of coats',  unit: {},                                      min: 1 },
+    { id: 'length',      label: 'Room length',      hint: 'Interior room length, measured wall to wall.',                                                                                                    unit: { metric: 'm',     imperial: 'ft'     }, min: 0 },
+    { id: 'width',       label: 'Room width',       hint: 'Interior room width, measured wall to wall.',                                                                                                     unit: { metric: 'm',     imperial: 'ft'     }, min: 0 },
+    { id: 'height',      label: 'Wall height',      hint: 'Floor-to-ceiling height.',                                                                                                                        unit: { metric: 'm',     imperial: 'ft'     }, min: 0 },
+    { id: 'doors',       label: 'Doors',            hint: 'Number of standard interior doors. Each door is deducted at 1.9 m² (about 20 ft²).',                                                             unit: {},                                      min: 0 },
+    { id: 'windows',     label: 'Windows',          hint: 'Number of windows. Each window is deducted at 1.4 m² (about 15 ft²).',                                                                           unit: {},                                      min: 0 },
+    { id: 'spread-rate', label: 'Spread rate',      hint: 'Coverage per litre or gallon — check the paint can label. Typically 10–12 m²/L for flat/matte, 8–10 m²/L for semi-gloss. Leave blank to use the default.', unit: { metric: 'm²/L', imperial: 'ft²/gal' }, min: 1 },
+    { id: 'coats',       label: 'Number of coats',  hint: 'Total coats to apply, including any primer coat. Two finish coats is standard for most interior painting.',                                       unit: {},                                      min: 1 },
   ],
 
   calculate(inputs, unitSystem) {
