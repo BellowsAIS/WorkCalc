@@ -32,6 +32,7 @@ function init() {
   document.getElementById('unit-toggle').addEventListener('click', toggleUnits);
   document.getElementById('app-nav').addEventListener('click', onNavClick);
   document.getElementById('app-main').addEventListener('input', onInput);
+  document.getElementById('app-main').addEventListener('change', onInput);
   document.getElementById('app-main').addEventListener('click', onMainClick);
 
   if ('serviceWorker' in navigator) {
