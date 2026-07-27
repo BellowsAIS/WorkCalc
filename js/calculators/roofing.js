@@ -5,10 +5,11 @@ export default {
   label: 'Roofing',
   defaultWasteFactor: 10,
   inputs: [
-    { id: 'length', label: 'Building length', unit: { metric: 'm', imperial: 'ft' }, min: 0 },
-    { id: 'width',  label: 'Building width',  unit: { metric: 'm', imperial: 'ft' }, min: 0 },
+    { id: 'length', label: 'Building length', hint: 'Length of the building measured along the ridge, from gable end to gable end.', unit: { metric: 'm', imperial: 'ft' }, min: 0 },
+    { id: 'width',  label: 'Building width',  hint: 'Width of the building measured perpendicular to the ridge. Rafter run equals half this value.', unit: { metric: 'm', imperial: 'ft' }, min: 0 },
     {
       id: 'pitch', label: 'Roof pitch (rise/12)', type: 'select',
+      hint: 'Slope expressed as rise per 12 units of horizontal run. Common residential pitches range from 4/12 to 6/12.',
       options: [
         { value: '2',  label: '2/12' },
         { value: '3',  label: '3/12' },
