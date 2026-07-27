@@ -14,10 +14,10 @@ The minimum set of features required for a usable v1 Play Store release.
 - ✅ App shell — bottom navigation bar, global imperial/metric toggle, localStorage persistence
 - ✅ Concrete calculator — slab volume, footing/pier volume, bag count (25 kg and 30 kg)
 - ✅ Lumber & framing calculator — board feet, stud count (12"/16"/24" o/c), nominal vs actual sizing
-- 📋 Masonry calculator — brick and block count, mortar volume, opening deductions
-- 📋 Roofing calculator — roof squares, shingle bundles, rafter length, ridge length
-- 📋 Paint & coatings calculator — wall area, litres per coat, door/window deductions, coat count
-- 📋 Excavation calculator — cut/fill volume, truck load count, swell factor presets
+- ✅ Masonry calculator — brick and block count, mortar volume, opening deductions
+- ✅ Roofing calculator — roof squares, shingle bundles, rafter length, ridge length
+- ✅ Paint & coatings calculator — wall area, litres per coat, door/window deductions, coat count
+- ✅ Excavation calculator — cut/fill volume, truck load count, swell factor presets
 - 📋 Waste factor field on every calculator (default 10%, range 0–50%)
 - 📋 Live result updates on every keystroke (no submit button)
 - 📋 Formula display beneath every result (plain language)
