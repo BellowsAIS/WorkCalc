@@ -136,12 +136,13 @@ function inputHtml(modId, input) {
     ${hintText}`;
 
   if (input.type === 'select') {
+    const opts = Array.isArray(input.options) ? input.options : (input.options[unitSystem] ?? input.options.metric);
     return `
       <div class="input-group">
         ${labelRow}
         <div class="input-wrap">
           <select id="${modId}-${input.id}" class="calc-input" data-module="${modId}">
-            ${input.options.map(o => `<option value="${o.value}">${o.label}</option>`).join('')}
+            ${opts.map(o => `<option value="${o.value}">${o.label}</option>`).join('')}
           </select>
         </div>
       </div>`;
@@ -170,8 +171,22 @@ function toggleUnits() {
   localStorage.setItem('cancalc-units', unitSystem);
   setUnitLabel();
   refreshUnitLabels();
+  refreshSelectOptions();
   const mod = MODULES.find(m => m.id === activePanel);
   if (mod) runCalc(mod);
+}
+
+function refreshSelectOptions() {
+  MODULES.forEach(mod => {
+    mod.inputs.forEach(input => {
+      if (input.type !== 'select' || Array.isArray(input.options)) return;
+      const el = document.getElementById(`${mod.id}-${input.id}`);
+      if (!el) return;
+      const currentVal = el.value;
+      const opts = input.options[unitSystem] ?? input.options.metric;
+      el.innerHTML = opts.map(o => `<option value="${o.value}"${o.value === currentVal ? ' selected' : ''}>${o.label}</option>`).join('');
+    });
+  });
 }
 
 function setUnitLabel() {

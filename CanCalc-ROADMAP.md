@@ -1,6 +1,6 @@
 # cancalc-ROADMAP.md
 
-**Version:** v01_00_007
+**Version:** v01_00_008
 
 Status markers: 💡 Idea · 📋 Planned · 🔄 In Progress · ✅ Done
 
@@ -31,7 +31,7 @@ The minimum set of features required for a usable v1 Play Store release.
 - 📋 Play Store listing — description, screenshots, content rating
 - 📋 Branding update — app name, logo, icon design, colour scheme, and typography refresh
 - 📋 Lumber calc: show board length in result summary to assist with purchasing
-- 📋 Dropdown imperial support — select options that currently show metric-only values (e.g. stud spacing in mm, bag sizes in kg) need imperial equivalents; display the correct label set based on the active unit toggle
+- ✅ ~~Dropdown imperial support — select options that currently show metric-only values (e.g. stud spacing in mm, bag sizes in kg) need imperial equivalents; display the correct label set based on the active unit toggle~~
 
 ---
 

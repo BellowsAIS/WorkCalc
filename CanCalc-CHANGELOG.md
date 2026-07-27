@@ -1,6 +1,6 @@
 # CanCalc-CHANGELOG.md
 
-**Version:** v01_00_007
+**Version:** v01_00_008
 
 ---
 
