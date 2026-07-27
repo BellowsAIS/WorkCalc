@@ -1,4 +1,4 @@
-const CACHE = 'workcalc-v01_00_010';
+const CACHE = 'workcalc-v01_00_011';
 
 const ASSETS = [
   '/',

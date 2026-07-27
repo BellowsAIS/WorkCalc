@@ -1,10 +1,21 @@
 # WorkCalc-CHANGELOG.md
 
-**Version:** v01_00_010
+**Version:** v01_00_011
 
 ---
 
-## v01_00_010 — Unreleased
+## v01_00_011 — Unreleased
+
+### Branding — Visual identity
+- Blueprint blue colour palette throughout (light and dark mode)
+- New app icon: tape measure body with calculator display and keypad, extended tape with tick marks
+- Header colour updated from black to deep navy `#082d56`
+- `manifest.json` theme_color and background_color updated to `#082d56`
+- Meta theme-color updated in HTML
+- SVG icon added to manifest icons list for modern browser installs
+- Bumped service worker cache to `workcalc-v01_00_011`
+
+## v01_00_010
 
 ### Branding — App rename
 - App renamed from CanCalc to WorkCalc throughout
