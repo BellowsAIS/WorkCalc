@@ -6,6 +6,34 @@
 
 ## v01_00_000 — Unreleased
 
+### Masonry calculator
+- Brick count (190 × 90 × 57 mm) and concrete block count (390 × 190 × 190 mm)
+- Adjustable mortar joint width (default 10 mm); mortar volume computed from unit count
+- Opening deductions (doors, windows) subtracted from gross wall area before calc
+- Full metric and imperial support; waste-adjusted unit count and mortar volume
+- Plain-language formula displayed beneath every result
+- Bumped service worker cache to `cancalc-v01_00_003`
+
+### Roofing calculator
+- Roof squares: plan area × pitch factor ÷ 9.29 m²/sq (metric) or ÷ 100 ft²/sq (imperial)
+- Pitch factor computed from rise/12 select (2/12 through 12/12)
+- Shingle bundles: ceil(squares × 3) — Canadian standard
+- Rafter length and ridge length displayed in formula
+- Waste-adjusted squares and bundles
+
+### Paint & coatings calculator
+- Gross wall area: 2 × (length + width) × height
+- Door deduction: 1.9 m² (20.5 ft²) per door; window deduction: 1.4 m² (15.1 ft²) per window
+- Adjustable spread rate (default 10 m²/L metric, 400 ft²/gal imperial)
+- Total volume = (net area ÷ spread rate) × coats
+- Waste-adjusted total volume
+
+### Excavation calculator
+- Bank volume: length × width × depth
+- Loose volume = bank volume × swell factor (sand 10%, topsoil 15%, clay 25%, rock 50%)
+- Optional truck load count: ceil(loose volume ÷ truck capacity)
+- Full metric (m³) and imperial (yd³) support
+
 ### Lumber & framing calculator
 - Board feet: (thickness_nom × width_nom × length) ÷ 12 — always computed in nominal inches/feet regardless of unit toggle
 - Stud count: floor(wall length ÷ spacing) + 1 for 300 mm (12"), 400 mm (16"), 600 mm (24") o/c
