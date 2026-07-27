@@ -1,4 +1,4 @@
-const CACHE = 'cancalc-v01_00_006';
+const CACHE = 'cancalc-v01_00_007';
 
 const ASSETS = [
   '/',
@@ -14,6 +14,7 @@ const ASSETS = [
   '/js/calculators/roofing.js',
   '/js/calculators/paint.js',
   '/js/calculators/excavation.js',
+  '/icons/favicon.svg',
 ];
 
 self.addEventListener('install', e => {

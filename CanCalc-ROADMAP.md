@@ -1,6 +1,6 @@
 # cancalc-ROADMAP.md
 
-**Version:** v01_00_006
+**Version:** v01_00_007
 
 Status markers: 💡 Idea · 📋 Planned · 🔄 In Progress · ✅ Done
 
