@@ -1,4 +1,4 @@
-# CLAUDE.project.md — CanCalc
+# CLAUDE.project.md — WorkCalc
 
 **Version:** 2026-07-26-01
 
@@ -8,7 +8,7 @@ Project-specific instructions. These extend and, where noted, override `CLAUDE.m
 
 ## Project overview
 
-CanCalc is a mobile-first Progressive Web App (PWA) for Canadian construction
+WorkCalc is a mobile-first Progressive Web App (PWA) for Canadian construction
 tradespeople. It provides offline-capable calculators for common on-site
 quantity and material estimation tasks: concrete, lumber & framing, masonry,
 roofing, paint & coatings, and excavation.
@@ -41,11 +41,11 @@ opening `index.html` directly in a browser with no build step.
 ## Repo structure
 
 ```
-cancalc/
+workcalc/
 ├── CLAUDE.md                    # Base instructions (unmodified)
 ├── CLAUDE.project.md            # This file
-├── CanCalc-ROADMAP.md           # Project roadmap
-├── cancalc-CHANGELOG.md         # Version history
+├── WorkCalc-ROADMAP.md           # Project roadmap
+├── workcalc-CHANGELOG.md         # Version history
 ├── Documentation/               # Brief, specs, Play Store notes
 ├── Samples/                     # Reference screenshots, design refs
 ├── Archive/                     # Superseded files
@@ -81,7 +81,7 @@ Version format: `vMM_mm_ppp`
 - `mm` — minor version (new calculator module or significant feature)
 - `ppp` — patch (bug fix, copy change, formula correction)
 
-Record every version bump in `cancalc-CHANGELOG.md` before opening a PR.
+Record every version bump in `workcalc-CHANGELOG.md` before opening a PR.
 The current version string must also be reflected in `manifest.json`
 (`version` field) and displayed in the app's footer/about screen.
 
@@ -176,8 +176,8 @@ object with:
 
 ```json
 {
-  "name": "CanCalc — Construction Calculators",
-  "short_name": "CanCalc",
+  "name": "WorkCalc — Construction Calculators",
+  "short_name": "WorkCalc",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
@@ -236,7 +236,7 @@ Follows `CLAUDE.md` conventions:
 
 After the PWA is complete and tested:
 1. Run `npx @bubblewrap/cli init` to generate the Android project
-2. Set `packageId` to `ca.renniesolutions.cancalc` (placeholder — confirm
+2. Set `packageId` to `ca.renniesolutions.workcalc` (placeholder — confirm
    before submission)
 3. Build a signed APK/AAB using the Bubblewrap CLI
 4. Submit to Google Play via the Play Console

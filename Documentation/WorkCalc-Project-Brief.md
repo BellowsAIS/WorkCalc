@@ -1,4 +1,4 @@
-Build a Progressive Web App called CanCalc — a construction calculator for Canadian tradespeople. The app must be fully offline-capable, require no login, no paid APIs, and no backend. All logic runs in the browser.
+Build a Progressive Web App called WorkCalc — a construction calculator for Canadian tradespeople. The app must be fully offline-capable, require no login, no paid APIs, and no backend. All logic runs in the browser.
 
 ## Tech stack
 - Vanilla HTML, CSS, and JavaScript only — no frameworks

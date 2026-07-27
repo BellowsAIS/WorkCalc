@@ -1,6 +1,6 @@
 {
-  "name": "CanCalc — Construction Calculators",
-  "short_name": "CanCalc",
+  "name": "WorkCalc — Construction Calculators",
+  "short_name": "WorkCalc",
   "description": "Offline construction calculators for Canadian tradespeople",
   "version": "01.00.000",
   "start_url": "/",
