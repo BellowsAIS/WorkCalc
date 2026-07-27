@@ -1,10 +1,17 @@
 # WorkCalc-CHANGELOG.md
 
-**Version:** v01_00_011
+**Version:** v01_00_012
 
 ---
 
-## v01_00_011 — Unreleased
+## v01_00_012 — Unreleased
+
+### Fix — PWA install on GitHub Pages
+- `manifest.json`: added `scope: "/WorkCalc/"` and corrected `start_url` from `"/"` to `"/WorkCalc/"` — fixes 404 on PWA install
+- `service-worker.js`: all ASSETS paths now prefixed with `/WorkCalc/` to match GitHub Pages subpath; cache bumped to `workcalc-v01_00_012`
+- `js/app.js`: service worker registration changed from absolute `/service-worker.js` to relative `./service-worker.js` so it registers at the correct scope
+
+## v01_00_011
 
 ### Branding — Visual identity
 - Blueprint blue colour palette throughout (light and dark mode)

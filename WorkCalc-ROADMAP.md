@@ -1,6 +1,6 @@
 # WorkCalc-ROADMAP.md
 
-**Version:** v01_00_011
+**Version:** v01_00_012
 
 Status markers: 💡 Idea · 📋 Planned · 🔄 In Progress · ✅ Done
 

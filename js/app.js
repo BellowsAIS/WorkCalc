@@ -36,7 +36,7 @@ function init() {
   document.getElementById('app-main').addEventListener('click', onMainClick);
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js');
+    navigator.serviceWorker.register('./service-worker.js');
   }
 }
 

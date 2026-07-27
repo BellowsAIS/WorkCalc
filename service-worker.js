@@ -1,20 +1,20 @@
-const CACHE = 'workcalc-v01_00_011';
+const CACHE = 'workcalc-v01_00_012';
 
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/css/main.css',
-  '/js/app.js',
-  '/js/units.js',
-  '/js/history.js',
-  '/js/calculators/concrete.js',
-  '/js/calculators/lumber.js',
-  '/js/calculators/masonry.js',
-  '/js/calculators/roofing.js',
-  '/js/calculators/paint.js',
-  '/js/calculators/excavation.js',
-  '/icons/favicon.svg',
+  '/WorkCalc/',
+  '/WorkCalc/index.html',
+  '/WorkCalc/manifest.json',
+  '/WorkCalc/css/main.css',
+  '/WorkCalc/js/app.js',
+  '/WorkCalc/js/units.js',
+  '/WorkCalc/js/history.js',
+  '/WorkCalc/js/calculators/concrete.js',
+  '/WorkCalc/js/calculators/lumber.js',
+  '/WorkCalc/js/calculators/masonry.js',
+  '/WorkCalc/js/calculators/roofing.js',
+  '/WorkCalc/js/calculators/paint.js',
+  '/WorkCalc/js/calculators/excavation.js',
+  '/WorkCalc/icons/favicon.svg',
 ];
 
 self.addEventListener('install', e => {
