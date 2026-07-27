@@ -1,0 +1,41 @@
+{
+  "packageId": "ca.bais.workcalc",
+  "host": "maestromrrennie.github.io",
+  "name": "WorkCalc — Construction Calculators",
+  "launcherName": "WorkCalc",
+  "display": "standalone",
+  "orientation": "portrait",
+  "themeColor": "#082d56",
+  "navigationColor": "#082d56",
+  "navigationColorDark": "#061422",
+  "navigationDividerColor": "#082d56",
+  "navigationDividerColorDark": "#061422",
+  "backgroundColor": "#082d56",
+  "enableNotifications": false,
+  "startUrl": "/WorkCalc/",
+  "iconUrl": "https://maestromrrennie.github.io/WorkCalc/icons/icon-512.png",
+  "maskableIconUrl": "https://maestromrrennie.github.io/WorkCalc/icons/icon-maskable.png",
+  "monochromeIconUrl": "https://maestromrrennie.github.io/WorkCalc/icons/icon-512.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "./android.keystore",
+    "alias": "android"
+  },
+  "appVersionCode": 1,
+  "appVersionName": "1.0.013",
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://maestromrrennie.github.io/WorkCalc/manifest.json",
+  "fallbackType": "customtabs",
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://maestromrrennie.github.io/WorkCalc/",
+  "minSdkVersion": 21,
+  "fingerprints": [
+    {
+      "name": "android",
+      "value": "E4:31:FF:05:B0:5F:8D:B6:6A:0A:6A:14:16:20:55:E1:51:59:47:F4:E7:7B:5B:99:95:C4:87:5A:07:5C:46:DA"
+    }
+  ]
+}
