@@ -67,7 +67,7 @@ export default {
       ],
     },
     { id: 'length',    label: 'Length / Diameter', hint: 'For slabs and footings: the long dimension. For round piers: the outside diameter of the column.', unit: { metric: 'm',  imperial: 'ft' }, min: 0 },
-    { id: 'width',     label: 'Width',             hint: 'The shorter dimension of the pour. Not used for round piers.', unit: { metric: 'm',  imperial: 'ft' }, min: 0 },
+    { id: 'width',     label: 'Width',             hint: 'The shorter dimension of the pour. Not used for round piers.', visibleWhen: { 'calc-type': ['slab', 'footing'] }, unit: { metric: 'm',  imperial: 'ft' }, min: 0 },
     { id: 'thickness', label: 'Thickness / Depth', hint: 'Slab thickness or footing/pier depth. Enter in mm (metric) or inches (imperial).', unit: { metric: 'mm', imperial: 'in' }, min: 0 },
     {
       id: 'bag-size', label: 'Bag size', type: 'select',
