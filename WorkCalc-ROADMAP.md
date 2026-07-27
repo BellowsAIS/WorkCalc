@@ -1,6 +1,6 @@
-# cancalc-ROADMAP.md
+# WorkCalc-ROADMAP.md
 
-**Version:** v01_00_009
+**Version:** v01_00_010
 
 Status markers: 💡 Idea · 📋 Planned · 🔄 In Progress · ✅ Done
 
@@ -29,7 +29,7 @@ The minimum set of features required for a usable v1 Play Store release.
 - ✅ ~~Conditional field visibility — irrelevant fields hidden automatically based on calc-type selection~~
 - 📋 Bubblewrap TWA build — signed APK/AAB for Play Store submission
 - 📋 Play Store listing — description, screenshots, content rating
-- 📋 Branding update — app name, logo, icon design, colour scheme, and typography refresh
+- 🔄 Branding update — app name, logo, icon design, colour scheme, and typography refresh
 - 📋 Lumber calc: show board length in result summary to assist with purchasing
 - ✅ ~~Dropdown imperial support — select options that currently show metric-only values (e.g. stud spacing in mm, bag sizes in kg) need imperial equivalents; display the correct label set based on the active unit toggle~~
 

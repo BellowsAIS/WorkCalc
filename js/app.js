@@ -18,7 +18,7 @@ const ICONS = {
   history:    `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12,7 12,12 16,15"/></svg>`,
 };
 
-let unitSystem = localStorage.getItem('cancalc-units') || 'metric';
+let unitSystem = localStorage.getItem('workcalc-units') || 'metric';
 let activePanel = 'concrete';
 
 // ── Init ──────────────────────────────────────────────────────────────────────
@@ -168,7 +168,7 @@ function inputHtml(modId, input) {
 
 function toggleUnits() {
   unitSystem = unitSystem === 'metric' ? 'imperial' : 'metric';
-  localStorage.setItem('cancalc-units', unitSystem);
+  localStorage.setItem('workcalc-units', unitSystem);
   setUnitLabel();
   refreshUnitLabels();
   refreshSelectOptions();
@@ -299,7 +299,7 @@ function handleCopy(modId) {
   const wasteEl  = document.getElementById(`rw-${modId}`);
 
   const lines = [
-    `CanCalc — ${mod?.label ?? modId}`,
+    `WorkCalc — ${mod?.label ?? modId}`,
     valueEl?.textContent,
     formulaEl?.textContent,
     wasteEl?.hidden === false ? wasteEl?.textContent : null,

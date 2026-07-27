@@ -1,4 +1,4 @@
-const KEY = 'cancalc-history';
+const KEY = 'workcalc-history';
 const MAX = 20;
 
 export const history = {

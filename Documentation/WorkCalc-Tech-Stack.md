@@ -1,6 +1,6 @@
-# cancalc-Tech-Stack.md
+# workcalc-Tech-Stack.md
 
-Technical reference for the CanCalc PWA. Describes every layer of the stack,
+Technical reference for the WorkCalc PWA. Describes every layer of the stack,
 the rationale for each choice, and constraints Claude Code must respect.
 
 ---
@@ -44,8 +44,8 @@ the rationale for each choice, and constraints Claude Code must respect.
 
 ```json
 {
-  "name": "CanCalc — Construction Calculators",
-  "short_name": "CanCalc",
+  "name": "WorkCalc — Construction Calculators",
+  "short_name": "WorkCalc",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
@@ -59,17 +59,17 @@ the rationale for each choice, and constraints Claude Code must respect.
 ## File structure
 
 ```
-cancalc/
+workcalc/
 ├── CLAUDE.md
 ├── CLAUDE.project.md
-├── cancalc-ROADMAP.md
-├── cancalc-CHANGELOG.md
-├── cancalc-Tech-Stack.md          ← this file
+├── workcalc-ROADMAP.md
+├── workcalc-CHANGELOG.md
+├── workcalc-Tech-Stack.md          ← this file
 ├── Documentation/
 ├── Samples/
 ├── Archive/
 ├── index.html                     ← copy of current versioned file
-├── cancalc_v01_00_000.html        ← versioned app file
+├── workcalc_v01_00_000.html        ← versioned app file
 ├── manifest.json
 ├── service-worker.js
 ├── css/
@@ -173,7 +173,7 @@ The PWA is wrapped as an Android app using Bubblewrap (Google's official CLI).
 | Item | Detail |
 |---|---|
 | Tool | `@bubblewrap/cli` (npx, no global install required) |
-| Package ID | `ca.renniesolutions.cancalc` (confirm before first submission) |
+| Package ID | `ca.renniesolutions.workcalc` (confirm before first submission) |
 | Output | Signed AAB (Android App Bundle) for Play Store |
 | `asset_links.json` | Added after Play Console app is created and SHA-256 fingerprint is known |
 | Step-by-step guide | `Documentation/Play-Store-Guide.md` (generated during build) |

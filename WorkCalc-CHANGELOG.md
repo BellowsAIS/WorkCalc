@@ -1,6 +1,18 @@
-# CanCalc-CHANGELOG.md
+# WorkCalc-CHANGELOG.md
 
-**Version:** v01_00_009
+**Version:** v01_00_010
+
+---
+
+## v01_00_010 — Unreleased
+
+### Branding — App rename
+- App renamed from CanCalc to WorkCalc throughout
+- Updated `manifest.json` name and short_name to WorkCalc
+- Updated service worker cache key to `workcalc-v01_00_010`
+- Updated localStorage keys to `workcalc-units` and `workcalc-history`
+- Versioned HTML file renamed to `workcalc_v01_00_010.html`; `cancalc_v01_00_009.html` moved to `Archive/`
+- Updated CHANGELOG, ROADMAP, Documentation, CLAUDE.project.md, and README
 
 ---
 

@@ -1,6 +1,6 @@
-# CanCalc — Construction Calculators
+# WorkCalc — Construction Calculators
 
-A mobile-first Progressive Web App (PWA) for Canadian construction tradespeople. CanCalc provides fast, offline-capable calculators for common on-site quantity and material estimation tasks — no login, no internet connection required after first load.
+A mobile-first Progressive Web App (PWA) for Canadian construction tradespeople. WorkCalc provides fast, offline-capable calculators for common on-site quantity and material estimation tasks — no login, no internet connection required after first load.
 
 Available on Android via the Google Play Store, and installable directly from any browser as a standard PWA.
 
@@ -41,4 +41,4 @@ Vanilla HTML5, CSS3, and JavaScript (ES6+) — no frameworks, no build step, no 
 
 ## Status
 
-Under active development. See [`CanCalc-ROADMAP.md`](CanCalc-ROADMAP.md) for what's planned and [`CanCalc-CHANGELOG.md`](CanCalc-CHANGELOG.md) for version history.
+Under active development. See [`WorkCalc-ROADMAP.md`](WorkCalc-ROADMAP.md) for what's planned and [`WorkCalc-CHANGELOG.md`](WorkCalc-CHANGELOG.md) for version history.
