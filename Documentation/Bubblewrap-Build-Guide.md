@@ -79,6 +79,43 @@ When you release a new version of WorkCalc:
 
 ---
 
+## Updating Bubblewrap for a new Android API target (e.g. Android 16 / API 36)
+
+Play Store periodically requires apps to target a newer API level. When that happens:
+
+### 1. Update the Bubblewrap CLI
+
+```bash
+npm install -g @bubblewrap/cli
+```
+
+### 2. Update the Android project
+
+Run this from inside the `twa/` folder. This regenerates the Android project files so they target the latest API level.
+
+```bash
+cd C:\Users\mrenn\WorkCalc\twa
+bubblewrap update
+```
+
+### 3. Build the new AAB
+
+```bash
+bubblewrap build
+```
+
+### 4. Bump `appVersionCode` in `twa/twa-manifest.json`, commit, and push
+
+Play Console rejects uploads with a version code it has already seen. Increment `appVersionCode` by 1 before uploading.
+
+### 5. Upload to Play Console closed testing
+
+Upload the new `app-release-signed.aab` to Play Console under the appropriate track (e.g. Closed testing).
+
+**Reference:** This procedure was first applied in July 2026 to satisfy the Android 16 (API 36) targeting requirement (`appVersionCode` bumped from 5 → 6).
+
+---
+
 ## Key files
 
 | File | Location | Notes |
