@@ -20,7 +20,7 @@ npm install -g @bubblewrap/cli
 ### 2. Clone the WorkCalc repo locally (if you haven't already)
 
 ```bash
-git clone https://github.com/BAIS/WorkCalc.git
+git clone https://github.com/BellowsAIS/WorkCalc.git
 cd WorkCalc
 ```
 
@@ -34,7 +34,7 @@ Run this from inside the `twa/` folder. Bubblewrap will download the Android SDK
 
 ```bash
 cd twa
-bubblewrap init --manifest https://BAIS.github.io/WorkCalc/manifest.json
+bubblewrap init --manifest https://BellowsAIS.github.io/WorkCalc/manifest.json
 ```
 
 When prompted, accept the pre-filled values (they come from `twa-manifest.json`). The only prompts you need to fill in are:
@@ -86,7 +86,7 @@ When you release a new version of WorkCalc:
 | Bubblewrap config | `twa/twa-manifest.json` | Committed to repo — safe |
 | Android keystore | `twa/android.keystore` | **Never commit — back up separately** |
 | App bundle output | `twa/app-release-signed.aab` | Ephemeral build output — not committed |
-| Asset links | `BAIS.github.io/.well-known/assetlinks.json` | Already live |
+| Asset links | `BellowsAIS.github.io/.well-known/assetlinks.json` | Already live |
 
 ---
 
@@ -94,7 +94,7 @@ When you release a new version of WorkCalc:
 
 **"Digital asset link verification failed"** — wait 10–15 min after pushing `assetlinks.json`; GitHub Pages can be slow to deploy. Verify with:
 ```
-https://digitalassetlinks.googleapis.com/v1/statements:list?source.web.site=https://BAIS.github.io&relation=delegate_permission/common.handle_all_urls
+https://digitalassetlinks.googleapis.com/v1/statements:list?source.web.site=https://BellowsAIS.github.io&relation=delegate_permission/common.handle_all_urls
 ```
 
 **"App not verified" bar appears in TWA** — the SHA-256 fingerprint in `assetlinks.json` must match the Play Store signing key (not the upload key). Confirm the fingerprint in Play Console under **Setup → App integrity → App signing key certificate**.

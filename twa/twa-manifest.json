@@ -1,6 +1,6 @@
 {
   "packageId": "ca.bais.workcalc",
-  "host": "BAIS.github.io",
+  "host": "BellowsAIS.github.io",
   "name": "WorkCalc — Construction Calculators",
   "launcherName": "WorkCalc",
   "display": "standalone",
@@ -13,9 +13,9 @@
   "backgroundColor": "#082d56",
   "enableNotifications": false,
   "startUrl": "/WorkCalc/",
-  "iconUrl": "https://BAIS.github.io/WorkCalc/icons/icon-512.png",
-  "maskableIconUrl": "https://BAIS.github.io/WorkCalc/icons/icon-maskable.png",
-  "monochromeIconUrl": "https://BAIS.github.io/WorkCalc/icons/icon-512.png",
+  "iconUrl": "https://BellowsAIS.github.io/WorkCalc/icons/icon-512.png",
+  "maskableIconUrl": "https://BellowsAIS.github.io/WorkCalc/icons/icon-maskable.png",
+  "monochromeIconUrl": "https://BellowsAIS.github.io/WorkCalc/icons/icon-512.png",
   "splashScreenFadeOutDuration": 300,
   "signingKey": {
     "path": "./android.keystore",
@@ -25,12 +25,12 @@
   "appVersionName": "1.0.013",
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
-  "webManifestUrl": "https://BAIS.github.io/WorkCalc/manifest.json",
+  "webManifestUrl": "https://BellowsAIS.github.io/WorkCalc/manifest.json",
   "fallbackType": "customtabs",
   "enableSiteSettingsShortcut": true,
   "isChromeOSOnly": false,
   "isMetaQuest": false,
-  "fullScopeUrl": "https://BAIS.github.io/WorkCalc/",
+  "fullScopeUrl": "https://BellowsAIS.github.io/WorkCalc/",
   "minSdkVersion": 21,
   "fingerprints": [
     {
