@@ -166,7 +166,7 @@ Do not invent values for anything not specified here or in `CLAUDE.project.md`
 
 This file is versioned using the same date-counter format
 (`YYYY-MM-DD-NN`) as documents in the
-[Rennie-Solutions-Project-Playbook](https://github.com/BellowsAIS/Rennie-Solutions-Project-Playbook)
+[BellowsAIS-Project-Playbook](https://github.com/BellowsAIS/BellowsAIS-Project-Playbook)
 repo. Bump the version at the top and add a row here whenever this file changes.
 
 | Version        | Summary                              |
