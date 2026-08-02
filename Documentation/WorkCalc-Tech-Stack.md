@@ -1,4 +1,4 @@
-# workcalc-Tech-Stack.md
+# WorkCalc-Tech-Stack.md
 
 Technical reference for the WorkCalc PWA. Describes every layer of the stack,
 the rationale for each choice, and constraints Claude Code must respect.
@@ -46,11 +46,14 @@ the rationale for each choice, and constraints Claude Code must respect.
 {
   "name": "WorkCalc — Construction Calculators",
   "short_name": "WorkCalc",
-  "start_url": "/",
+  "description": "Offline construction calculators for Canadian tradespeople",
+  "start_url": "/WorkCalc/",
+  "scope": "/WorkCalc/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#ffffff",
-  "theme_color": "#1a1a1a"
+  "background_color": "#082d56",
+  "theme_color": "#082d56",
+  "lang": "en-CA"
 }
 ```
 
@@ -62,22 +65,20 @@ the rationale for each choice, and constraints Claude Code must respect.
 workcalc/
 ├── CLAUDE.md
 ├── CLAUDE.project.md
-├── workcalc-ROADMAP.md
-├── workcalc-CHANGELOG.md
-├── workcalc-Tech-Stack.md          ← this file
-├── Documentation/
-├── Samples/
-├── Archive/
-├── index.html                     ← copy of current versioned file
-├── workcalc_v01_00_000.html        ← versioned app file
+├── WorkCalc-ROADMAP.md
+├── WorkCalc-CHANGELOG.md
+├── README.md
+├── index.html                       ← copy of current versioned file (GitHub Pages entry point)
+├── workcalc_v01_00_013.html         ← current versioned app file (source of truth)
+├── privacy.html                     ← standalone privacy policy page (GitHub Pages)
 ├── manifest.json
 ├── service-worker.js
 ├── css/
 │   └── main.css
 ├── js/
-│   ├── app.js                     ← shell, navigation, global state
-│   ├── history.js                 ← calculation history (localStorage)
-│   ├── units.js                   ← imperial/metric conversion utilities
+│   ├── app.js                       ← shell, navigation, global state, rendering
+│   ├── history.js                   ← calculation history (localStorage)
+│   ├── units.js                     ← imperial/metric conversion utilities
 │   └── calculators/
 │       ├── concrete.js
 │       ├── lumber.js
@@ -85,10 +86,23 @@ workcalc/
 │       ├── roofing.js
 │       ├── paint.js
 │       └── excavation.js
-└── icons/
-    ├── icon-192.png
-    ├── icon-512.png
-    └── icon-maskable.png          ← required for Play Store
+├── icons/
+│   ├── favicon.svg
+│   ├── favicon.png
+│   ├── icon-192.png
+│   ├── icon-512.png
+│   ├── icon-maskable.png            ← required for Play Store adaptive icon
+│   └── feature-graphic.png          ← 1024×500 Play Store banner
+├── twa/
+│   └── twa-manifest.json            ← Bubblewrap config (package ID, version code, signing key)
+├── Archive/                         ← superseded versioned app files
+├── Documentation/
+│   ├── WorkCalc-Tech-Stack.md       ← this file
+│   ├── Bubblewrap-Build-Guide.md
+│   ├── PlayStore-Listing.md
+│   ├── WorkCalc-Project-Brief.md
+│   └── Comprehensive-Documentation-WorkCalc.md
+└── Samples/                         ← not yet populated
 ```
 
 ---
@@ -102,22 +116,26 @@ interface:
 export default {
   id: 'concrete',               // matches nav tab identifier
   label: 'Concrete',            // display name, Canadian English
-  inputs: [                     // array of input field definitions
+  defaultWasteFactor: 10,       // percent (0–50)
+  inputs: [
     {
-      id: 'length',
-      label: 'Length',
-      unit: { metric: 'm', imperial: 'ft' },
-      inputmode: 'decimal',
-      min: 0
+      id: 'field-id',
+      label: 'Field Label',
+      hint: 'Plain-language hint shown when ⓘ is tapped.',  // optional
+      type: 'select',           // omit for numeric inputs
+      unit: { metric: 'm', imperial: 'ft' },                // numeric inputs only
+      options: [...],           // select inputs — array or { metric:[...], imperial:[...] }
+      visibleWhen: { 'other-field-id': 'value' },           // optional conditional visibility
+      min: 0,
     }
-    // ...
   ],
   calculate(inputs, unitSystem) {
-    // Pure function — no side effects
+    // Pure function — no side effects, no DOM access
     // unitSystem: 'metric' | 'imperial'
-    // Returns: { result, unit, formula, wasteAdjusted }
+    // inputs: { [field-id]: number|string, waste: number }
+    // Returns: { display: string, formula: string, wasteAdjusted: string|null }
+    //   or null if required inputs are missing or zero
   },
-  defaultWasteFactor: 10        // percent
 }
 ```
 
@@ -135,34 +153,34 @@ export default {
 
 ### Concrete bag yields
 
-| Bag size | Yield (m³) |
-|---|---|
-| 25 kg | 0.010 |
-| 30 kg | 0.012 |
+| Bag size | Yield (m³) | Yield (ft³) |
+|---|---|---|
+| 25 kg | 0.010 | 0.353 |
+| 30 kg | 0.012 | 0.424 |
 
 ### Roofing
 
 | Constant | Value |
 |---|---|
-| 1 square | 9.29 m² |
-| Bundles per square | 3 |
+| 1 square | 9.29 m² (100 ft²) |
+| Bundles per square | 3 (Canadian standard) |
 
 ### Paint
 
 | Constant | Default value |
 |---|---|
-| Spread rate | 10 m²/L |
-| Door deduction | 1.9 m² |
-| Window deduction | 1.4 m² |
+| Spread rate | 10 m²/L metric · 400 ft²/gal imperial |
+| Door deduction | 1.9 m² per door |
+| Window deduction | 1.4 m² per window |
 
 ### Excavation swell factors
 
 | Soil type | Swell factor |
 |---|---|
 | Sand | 10% |
+| Topsoil | 15% |
 | Clay | 25% |
 | Rock | 50% |
-| Topsoil | 15% |
 
 ---
 
@@ -172,11 +190,13 @@ The PWA is wrapped as an Android app using Bubblewrap (Google's official CLI).
 
 | Item | Detail |
 |---|---|
-| Tool | `@bubblewrap/cli` (npx, no global install required) |
-| Package ID | `ca.renniesolutions.workcalc` (confirm before first submission) |
-| Output | Signed AAB (Android App Bundle) for Play Store |
-| `asset_links.json` | Added after Play Console app is created and SHA-256 fingerprint is known |
-| Step-by-step guide | `Documentation/Play-Store-Guide.md` (generated during build) |
+| Tool | `@bubblewrap/cli` (install globally: `npm install -g @bubblewrap/cli`) |
+| Package ID | `ca.bais.workcalc` |
+| Current appVersionCode | 6 |
+| Current appVersionName | 1.0.013 |
+| Output | Signed AAB (`app-release-bundle.aab`) for Play Store |
+| `assetlinks.json` | Live at `BellowsAIS.github.io/.well-known/assetlinks.json` |
+| Step-by-step guide | `Documentation/Bubblewrap-Build-Guide.md` |
 
 ---
 
@@ -186,10 +206,11 @@ The PWA is wrapped as an Android app using Bubblewrap (Google's official CLI).
 |---|---|
 | Chrome for Android | 90+ |
 | Samsung Internet | 14+ |
-| Android WebView (TWA) | Android 8.0 (API 26)+ |
+| Android (TWA) | Android 5.0 (API 21)+ — per `twa-manifest.json` `minSdkVersion` |
+| Android target SDK | Android 16 (API 36) — updated August 2026 to meet Play Store requirement |
 | Desktop Chrome (PWA) | 90+ |
 
-iOS Safari is not a primary target for v1 but the PWA will be installable
+iOS Safari is not a primary target for v1 but the PWA is installable
 via Add to Home Screen on iOS 16.4+.
 
 ---
