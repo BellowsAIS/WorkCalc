@@ -1,6 +1,6 @@
 # Comprehensive Documentation — WorkCalc
 
-> **Documentation Version:** 2026-08-01
+> **Documentation Version:** 2026-08-02
 > **App Version/Last Updated:** v01_00_013 (unreleased to production; in closed testing)
 > **Status:** Active Development
 
@@ -14,7 +14,7 @@ WorkCalc is a mobile-first Progressive Web App (PWA) that gives Canadian constru
 
 **Who uses it:** Field crew and tradespeople — carpenters, concreters, masons, roofers, painters, and excavation operators — working on Canadian residential and light commercial construction projects. The app is also useful for project managers and estimators doing quick take-offs at a desk.
 
-**Current status:** All six calculator modules are complete. The app is live as a GitHub Pages PWA and is available on Android via Google Play Store closed testing (as of the `appVersionCode 6` build targeting Android 16). Play Store production release is pending final listing assets (screenshots, feature graphic) and privacy policy.
+**Current status:** All six calculator modules are complete. The app is live as a GitHub Pages PWA and is available on Android via Google Play Store closed testing (as of the `appVersionCode 6` build targeting Android 16). Play Store production release is pending final listing assets (screenshots, feature graphic).
 
 ---
 
@@ -128,9 +128,9 @@ Expected response time for support inquiries is not formally defined. For a tool
 
 #### claude.md
 
-The repo's `CLAUDE.md` is version **2026-07-26-01** — this is **newer** than the reference standard version 2026-07-23-01 provided with this prompt. The additional content in the repo version tightens the PR rule: it changes "Open a pull request proactively once work is complete" to "Open a pull request immediately after every push" and adds the requirement to explicitly prompt the user to approve the merge. This is a valid and intentional forward update.
+The repo's `CLAUDE.md` is version **2026-08-01-01**. The PR rule matches the reference standard: "Open a pull request proactively once work is complete — do not wait to be asked." (Version 2026-07-26-01 had tightened this to "Open a pull request immediately after every push"; that change was reverted in 2026-08-01-01.)
 
-One deviation to flag: the repo's `CLAUDE.md` Change history section links to `Rennie-Solutions-Project-Playbook` as the canonical playbook repo. The reference standard links to `BellowsAIS-Project-Playbook`. These appear to be different names for the same or a related repo (the organisation was renamed from Rennie Solutions to Bellows Applied Intelligence Solutions). The playbook repo name in the CLAUDE.md footer should be verified and updated to match the current canonical repo.
+A previous deviation — the Change history footer referencing `Rennie-Solutions-Project-Playbook` and "Rennie Solutions" branding throughout — was resolved in version 2026-08-01-01, which updated all references to "Bellows Applied Intelligence Solutions" and `BellowsAIS-Project-Playbook`.
 
 #### claude.project.md
 
@@ -158,8 +158,8 @@ Present. Version 2026-07-27-01. Well-structured and comprehensive. Key content:
 | Versioned files at root | Only current version at root; superseded to `Archive/` | `workcalc_v01_00_010.html`, `011.html`, `012.html`, and `013.html` are all at root | ⚠️ 010, 011, and 012 are superseded and should only be in `Archive/`. They are currently in both locations — they appear to have been copied rather than moved. |
 | `manifest.json` version field | Should reflect current app version | Set to `"01.00.000"` | ⚠️ Stale. Should be `"01.00.013"`. |
 | File naming — Proper-Case-Hyphen-Separated | Required | `Documentation/WorkCalc-Tech-Stack.md` is correct; `workcalc-CHANGELOG.md` and `workcalc-ROADMAP.md` mentioned in CLAUDE.project.md's repo diagram are the old lowercase names | Note: Actual files are correctly named `WorkCalc-CHANGELOG.md` and `WorkCalc-ROADMAP.md`. The diagram in CLAUDE.project.md is inaccurate. |
-| `WorkCalc-Tech-Stack.md` package ID | `ca.bais.workcalc` | Still says `ca.renniesolutions.workcalc` | ⚠️ Stale reference to old package ID. |
-| `twa-manifest.json` minSdkVersion | — | 21 (Android 5.0) | Note: `WorkCalc-Tech-Stack.md` states Android 8.0 (API 26) as the minimum. The TWA manifest is authoritative; the Tech Stack doc is inaccurate. |
+| `WorkCalc-Tech-Stack.md` package ID | `ca.bais.workcalc` | `ca.bais.workcalc` | ✅ Resolved — Tech Stack doc updated to correct package ID. |
+| `twa-manifest.json` minSdkVersion | — | 21 (Android 5.0) | ✅ Resolved — Tech Stack doc updated to reflect Android 5.0 (API 21) minimum and Android 16 (API 36) target SDK. |
 | CHANGELOG structure | One `v01_00_000` entry | Two separate `v01_00_000` sections ("Unreleased" UX features, then "Scaffold") | ⚠️ Confusing. The UX features (conditional fields, hints, masonry, roofing, paint, excavation, lumber) were likely developed before the rename and filed under the wrong version header. A developer reading the changelog will find this misleading. |
 | CI/CD | Mentioned in CLAUDE.project.md | No `.github/workflows/` | ⚠️ No CI in place. |
 
@@ -211,6 +211,7 @@ Distribution
 ├── workcalc_v01_00_011.html      # ⚠️ Should be in Archive only
 ├── workcalc_v01_00_010.html      # ⚠️ Should be in Archive only
 ├── index.html                    # Verbatim copy of 013 (GitHub Pages entry point)
+├── privacy.html                  # Standalone privacy policy page (GitHub Pages)
 ├── manifest.json                 # Web App Manifest
 ├── service-worker.js             # Offline cache (cache key: workcalc-v01_00_013)
 ├── CLAUDE.md                     # Base development instructions
@@ -245,7 +246,7 @@ Distribution
 │   ├── Bubblewrap-Build-Guide.md # Step-by-step Android build and Play Store upload
 │   ├── PlayStore-Listing.md      # App store copy and outstanding items checklist
 │   ├── WorkCalc-Project-Brief.md # Original project brief
-│   └── WorkCalc-Tech-Stack.md    # Technical stack reference (some content now stale)
+│   └── WorkCalc-Tech-Stack.md    # Technical stack reference
 └── Samples/                      # ⚠️ Not present — missing per standard structure
 ```
 
@@ -366,7 +367,7 @@ History entries persist until the user clears them or clears browser storage. Th
 
 **Sensitive data:** The app does not collect, transmit, or store any personally identifiable information (PII). The only data stored locally is the unit preference and calculation history — neither of which is sensitive.
 
-**PIPEDA / Privacy:** Given that the app collects no personal data and has no backend, it has minimal PIPEDA exposure. There is no account creation, no email capture, no analytics, and no third-party SDKs. The main compliance consideration is the Play Store privacy policy requirement (Google requires all apps to link to a privacy policy, even if the policy simply states that no data is collected). This is listed as an outstanding item in `Documentation/PlayStore-Listing.md`.
+**PIPEDA / Privacy:** Given that the app collects no personal data and has no backend, it has minimal PIPEDA exposure. There is no account creation, no email capture, no analytics, and no third-party SDKs. Google requires all Play Store apps to link to a privacy policy, even if the policy simply states that no data is collected. A privacy policy is now live at `https://BellowsAIS.github.io/WorkCalc/privacy.html`, satisfying this requirement.
 
 **Quebec Law 25:** Not a current concern given the absence of personal data collection. If the app ever adds accounts or analytics, Quebec Law 25 obligations would need to be assessed.
 
@@ -470,13 +471,13 @@ Performance and scalability are not current concerns for the app's intended audi
 |---|---|---|---|
 | Dead code in concrete formula | `concrete.js` ~line 22: `formula` is assigned twice; the first assignment is immediately overwritten and never used. No functional impact, but misleading. | None needed — output is correct. | Fix in next patch. |
 | `manifest.json` version stale | `"version": "01.00.000"` — not updated since scaffold. | None — this field is informational only and does not affect functionality. | Fix in next patch. |
-| `WorkCalc-Tech-Stack.md` stale content | Still references old package ID `ca.renniesolutions.workcalc`; browser/device targets table lists Android 8.0 as minimum but twa-manifest.json sets minSdkVersion 21 (Android 5.0). | Refer to `twa-manifest.json` for authoritative values. | Update in documentation pass. |
+| `WorkCalc-Tech-Stack.md` stale content | ~~Still references old package ID `ca.renniesolutions.workcalc`; browser/device targets table lists Android 8.0 as minimum but twa-manifest.json sets minSdkVersion 21 (Android 5.0).~~ | ✅ Resolved — Tech Stack doc fully refreshed (package ID, Android SDK targets, module interface, file structure). | — |
 | Superseded versioned files at root | `workcalc_v01_00_010.html`, `011.html`, and `012.html` are in both the repo root and `Archive/`. They should only be in `Archive/`. | No functional impact — `index.html` is the entry point. | Clean up per standards. |
 | No input validation messages | Entering 0 or invalid values silently hides the result card with no explanation. | User enters valid values. | High Priority roadmap item. |
 | History only saves on Copy | Calculations are not auto-saved. Users who forget to tap Copy lose the entry. | Tap Copy before navigating away. | By design; may reconsider. |
 | No CI pipeline | CLAUDE.project.md lists GitHub Actions but no workflows exist. | Manual review process. | Address if project grows. |
 | Branching rule discrepancy | CLAUDE.project.md says `feature/` prefix; CLAUDE.md says `claude/`. In practice `claude/` is used. | Use `claude/` prefix consistently. | Update CLAUDE.project.md. |
-| Play Store not in production | App is in closed testing only. Production release pending screenshots, feature graphic, privacy policy. | Distribute via direct PWA install. | See PlayStore-Listing.md outstanding items. |
+| Play Store not in production | App is in closed testing only. Production release pending screenshots and feature graphic. | Distribute via direct PWA install. | See PlayStore-Listing.md outstanding items. |
 | No French support | App is English-only. | N/A | Future Enhancement on roadmap. |
 | iOS not a primary target | App is installable via Add to Home Screen on iOS 16.4+ but is not in the Apple App Store. | Use browser Add to Home Screen. | Future Enhancement on roadmap. |
 | No beam span calculator | Lumber module deliberately excludes span tables to avoid structural engineering liability. | Use the NRC span tables or engineered lumber manufacturer software. | Ideas Parking Lot (display-only reference table with prominent P.Eng disclaimer). |
@@ -614,7 +615,7 @@ The app collects no personal data. No analytics, no crash reporting, no advertis
 **PIPEDA:** Given the absence of personal data collection, PIPEDA obligations are minimal. If the app is updated to include any user data collection (accounts, analytics, feedback), a formal PIPEDA assessment would be required.
 
 **Google Play Store requirements:**
-Google requires all Play Store apps to link to a privacy policy, regardless of whether they collect personal data. A privacy policy URL has not yet been created and is listed as an outstanding item in `Documentation/PlayStore-Listing.md`. A simple policy stating that no personal data is collected would satisfy this requirement. ⚠️ This is a blocker for production release.
+Google requires all Play Store apps to link to a privacy policy, regardless of whether they collect personal data. A privacy policy is now live at `https://BellowsAIS.github.io/WorkCalc/privacy.html`. The policy states that WorkCalc collects no personal data and explains the two on-device localStorage items (unit preference, calculation history). This satisfies Google's requirement.
 
 **Liability:**
 The app includes a disclaimer in the About panel and on every result card stating that results are estimates only, for planning purposes, and that BAIS is not liable for errors. This disclaimer is governed by the laws of the Province of Ontario. ⚠️ Whether this disclaimer is legally effective in limiting liability has not been assessed by a lawyer.
@@ -637,7 +638,8 @@ The app explicitly excludes structural engineering calculations (beam spans, loa
 | Bubblewrap build guide | `Documentation/Bubblewrap-Build-Guide.md` |
 | Play Store listing draft | `Documentation/PlayStore-Listing.md` |
 | Original project brief | `Documentation/WorkCalc-Project-Brief.md` |
-| Tech stack reference | `Documentation/WorkCalc-Tech-Stack.md` *(some content stale — see Section 3.1)* |
+| Privacy policy | `https://BellowsAIS.github.io/WorkCalc/privacy.html` |
+| Tech stack reference | `Documentation/WorkCalc-Tech-Stack.md` |
 | Roadmap | `WorkCalc-ROADMAP.md` |
 | Changelog | `WorkCalc-CHANGELOG.md` |
 | Bubblewrap CLI docs | `https://github.com/GoogleChromeLabs/bubblewrap` |
@@ -737,7 +739,7 @@ export default {
 - [ ] Screenshots — minimum 2, recommended 4–8 at 1080×1920 (16:9)
 - [ ] Feature graphic — 1024×500 px PNG
 - [ ] IARC content rating questionnaire (completed inside Play Console)
-- [ ] Privacy policy URL (required — even a minimal "we collect no data" policy)
+- [x] Privacy policy URL — live at `https://BellowsAIS.github.io/WorkCalc/privacy.html`
 - [ ] Verify `asset_links.json` is live and TWA digital asset link passes verification
 
 ### Appendix D — Android Build Quick Reference
