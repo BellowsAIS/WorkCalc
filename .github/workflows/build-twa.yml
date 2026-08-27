@@ -35,7 +35,9 @@ jobs:
           node-version: '20'
 
       - name: Install Bubblewrap CLI
-        run: npm install -g @bubblewrap/cli
+        run: |
+          npm install -g @bubblewrap/cli
+          echo "BUBBLEWRAP_GLOBAL_ROOT=$(npm root -g)" >> $GITHUB_ENV
 
       - name: Decode keystore
         run: |

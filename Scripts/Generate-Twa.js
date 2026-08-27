@@ -19,13 +19,20 @@ const fs = require('fs');
 const { execSync } = require('child_process');
 
 async function main() {
-  // @bubblewrap/core is installed as a dependency of the globally installed @bubblewrap/cli
-  const globalRoot = execSync('npm root -g', { encoding: 'utf8' }).trim();
-  const corePath = path.join(globalRoot, '@bubblewrap', 'core');
+  // Locate @bubblewrap/core inside the globally installed @bubblewrap/cli.
+  // BUBBLEWRAP_GLOBAL_ROOT is set by the CI workflow to the real post-install
+  // global root, which may differ from what `npm root -g` reports when
+  // actions/setup-node has swapped the active Node binary.
+  const candidates = [];
+  if (process.env.BUBBLEWRAP_GLOBAL_ROOT) {
+    candidates.push(path.join(process.env.BUBBLEWRAP_GLOBAL_ROOT, '@bubblewrap', 'core'));
+  }
+  candidates.push(path.join(execSync('npm root -g', { encoding: 'utf8' }).trim(), '@bubblewrap', 'core'));
 
-  if (!fs.existsSync(corePath)) {
+  const corePath = candidates.find(p => fs.existsSync(p));
+  if (!corePath) {
     throw new Error(
-      `@bubblewrap/core not found at ${corePath}.\n` +
+      `@bubblewrap/core not found in any of:\n  ${candidates.join('\n  ')}\n` +
       'Ensure @bubblewrap/cli is installed globally before running this script.'
     );
   }
