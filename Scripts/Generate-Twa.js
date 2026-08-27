@@ -20,14 +20,17 @@ const { execSync } = require('child_process');
 
 async function main() {
   // Locate @bubblewrap/core inside the globally installed @bubblewrap/cli.
-  // BUBBLEWRAP_GLOBAL_ROOT is set by the CI workflow to the real post-install
-  // global root, which may differ from what `npm root -g` reports when
-  // actions/setup-node has swapped the active Node binary.
-  const candidates = [];
-  if (process.env.BUBBLEWRAP_GLOBAL_ROOT) {
-    candidates.push(path.join(process.env.BUBBLEWRAP_GLOBAL_ROOT, '@bubblewrap', 'core'));
-  }
-  candidates.push(path.join(execSync('npm root -g', { encoding: 'utf8' }).trim(), '@bubblewrap', 'core'));
+  // With npm v7+ the package may be nested under @bubblewrap/cli/node_modules
+  // rather than hoisted to the top-level global node_modules directory.
+  const globalRoot = (process.env.BUBBLEWRAP_GLOBAL_ROOT ||
+    execSync('npm root -g', { encoding: 'utf8' }).trim());
+
+  const candidates = [
+    // Hoisted (npm v6 / flat installs)
+    path.join(globalRoot, '@bubblewrap', 'core'),
+    // Nested under cli (npm v7+ when not deduped to top level)
+    path.join(globalRoot, '@bubblewrap', 'cli', 'node_modules', '@bubblewrap', 'core'),
+  ];
 
   const corePath = candidates.find(p => fs.existsSync(p));
   if (!corePath) {
