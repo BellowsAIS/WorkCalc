@@ -37,7 +37,10 @@ jobs:
       - name: Install Bubblewrap CLI
         run: |
           npm install -g @bubblewrap/cli
-          echo "BUBBLEWRAP_GLOBAL_ROOT=$(npm root -g)" >> $GITHUB_ENV
+          GLOBAL_ROOT=$(npm root -g)
+          # Expose both the top-level global root and the CLI's own node_modules
+          # so Node's require() can find @bubblewrap/core in either location.
+          echo "NODE_PATH=${GLOBAL_ROOT}:${GLOBAL_ROOT}/@bubblewrap/cli/node_modules" >> $GITHUB_ENV
 
       - name: Decode keystore
         run: |
