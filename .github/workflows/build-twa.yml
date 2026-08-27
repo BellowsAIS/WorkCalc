@@ -1,10 +1,13 @@
 name: Build TWA (Android AAB)
 
+# Triggered manually from the Actions tab.
+# Enter the version code and name, then download the signed AAB from the run artifacts.
+
 on:
   workflow_dispatch:
     inputs:
       version_code:
-        description: 'appVersionCode (must be higher than the last Play Store upload)'
+        description: 'appVersionCode — must be higher than the last Play Store upload'
         required: true
         type: string
       version_name:
@@ -21,12 +24,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Java 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
 
-      - name: Set up Node.js
+      - name: Set up Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -38,42 +41,36 @@ jobs:
         run: |
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > twa/android.keystore
 
-      - name: Update twa-manifest.json version fields
+      - name: Update version fields in twa-manifest.json
         run: |
-          cd twa
           node -e "
             const fs = require('fs');
-            const m = JSON.parse(fs.readFileSync('twa-manifest.json', 'utf8'));
+            const m = JSON.parse(fs.readFileSync('twa/twa-manifest.json', 'utf8'));
             m.appVersionCode = parseInt('${{ github.event.inputs.version_code }}');
             m.appVersionName = '${{ github.event.inputs.version_name }}';
-            fs.writeFileSync('twa-manifest.json', JSON.stringify(m, null, 2) + '\n');
+            fs.writeFileSync('twa/twa-manifest.json', JSON.stringify(m, null, 2) + '\n');
+            console.log('Version code:', m.appVersionCode, '/ name:', m.appVersionName);
           "
 
-      - name: Initialise Bubblewrap Android project
-        working-directory: twa
-        run: |
-          bubblewrap init \
-            --manifest https://BellowsAIS.github.io/WorkCalc/manifest.json \
-            --directory . \
-            --skip-pwa-validation
+      - name: Generate Android project (non-interactive)
+        run: node Scripts/Generate-Twa.js
         env:
-          BUBBLEWRAP_KEYSTORE_PATH: android.keystore
-          BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          BUBBLEWRAP_KEY_ALIAS: android
-          BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
       - name: Build signed AAB
         working-directory: twa
         run: |
-          bubblewrap build \
-            --skipPwaValidation
-        env:
-          BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          chmod +x gradlew
+          ./gradlew bundleRelease \
+            "-Pandroid.injected.signing.store.file=$(pwd)/android.keystore" \
+            "-Pandroid.injected.signing.store.password=${{ secrets.KEYSTORE_PASSWORD }}" \
+            "-Pandroid.injected.signing.key.alias=android" \
+            "-Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }}"
 
       - name: Upload AAB artifact
         uses: actions/upload-artifact@v4
         with:
           name: workcalc-v${{ github.event.inputs.version_name }}-code${{ github.event.inputs.version_code }}
-          path: twa/app-release-bundle.aab
+          path: twa/app/build/outputs/bundle/release/app-release.aab
           retention-days: 30
