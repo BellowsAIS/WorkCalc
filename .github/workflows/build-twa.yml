@@ -1,0 +1,79 @@
+name: Build TWA (Android AAB)
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_code:
+        description: 'appVersionCode (must be higher than the last Play Store upload)'
+        required: true
+        type: string
+      version_name:
+        description: 'appVersionName (e.g. 1.0.014)'
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Bubblewrap CLI
+        run: npm install -g @bubblewrap/cli
+
+      - name: Decode keystore
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > twa/android.keystore
+
+      - name: Update twa-manifest.json version fields
+        run: |
+          cd twa
+          node -e "
+            const fs = require('fs');
+            const m = JSON.parse(fs.readFileSync('twa-manifest.json', 'utf8'));
+            m.appVersionCode = parseInt('${{ github.event.inputs.version_code }}');
+            m.appVersionName = '${{ github.event.inputs.version_name }}';
+            fs.writeFileSync('twa-manifest.json', JSON.stringify(m, null, 2) + '\n');
+          "
+
+      - name: Initialise Bubblewrap Android project
+        working-directory: twa
+        run: |
+          bubblewrap init \
+            --manifest https://BellowsAIS.github.io/WorkCalc/manifest.json \
+            --directory . \
+            --skip-pwa-validation
+        env:
+          BUBBLEWRAP_KEYSTORE_PATH: android.keystore
+          BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          BUBBLEWRAP_KEY_ALIAS: android
+          BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+
+      - name: Build signed AAB
+        working-directory: twa
+        run: |
+          bubblewrap build \
+            --skipPwaValidation
+        env:
+          BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+
+      - name: Upload AAB artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: workcalc-v${{ github.event.inputs.version_name }}-code${{ github.event.inputs.version_code }}
+          path: twa/app-release-bundle.aab
+          retention-days: 30
