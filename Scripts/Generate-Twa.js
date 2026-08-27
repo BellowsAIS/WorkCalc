@@ -10,37 +10,19 @@
  *   KEY_PASSWORD       — key password
  *   JAVA_HOME          — path to JDK (set by actions/setup-java)
  *   ANDROID_SDK_ROOT   — path to Android SDK (set by the runner environment)
+ *   NODE_PATH          — set by CI to include global node_modules locations
  */
 
 'use strict';
 
 const path = require('path');
 const fs = require('fs');
-const { execSync } = require('child_process');
 
 async function main() {
-  // Locate @bubblewrap/core inside the globally installed @bubblewrap/cli.
-  // With npm v7+ the package may be nested under @bubblewrap/cli/node_modules
-  // rather than hoisted to the top-level global node_modules directory.
-  const globalRoot = (process.env.BUBBLEWRAP_GLOBAL_ROOT ||
-    execSync('npm root -g', { encoding: 'utf8' }).trim());
-
-  const candidates = [
-    // Hoisted (npm v6 / flat installs)
-    path.join(globalRoot, '@bubblewrap', 'core'),
-    // Nested under cli (npm v7+ when not deduped to top level)
-    path.join(globalRoot, '@bubblewrap', 'cli', 'node_modules', '@bubblewrap', 'core'),
-  ];
-
-  const corePath = candidates.find(p => fs.existsSync(p));
-  if (!corePath) {
-    throw new Error(
-      `@bubblewrap/core not found in any of:\n  ${candidates.join('\n  ')}\n` +
-      'Ensure @bubblewrap/cli is installed globally before running this script.'
-    );
-  }
-
-  const { TwaManifest, TwaGenerator, Config } = require(corePath);
+  // NODE_PATH is set by the CI workflow to include both the top-level global
+  // node_modules and @bubblewrap/cli/node_modules, so require() finds the
+  // package regardless of whether npm hoisted it or nested it.
+  const { TwaManifest, TwaGenerator, Config } = require('@bubblewrap/core');
 
   const twaDir = path.resolve('twa');
   const manifestPath = path.join(twaDir, 'twa-manifest.json');
